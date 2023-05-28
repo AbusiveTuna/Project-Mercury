@@ -1,5 +1,28 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.App input, .App .button-container {
+  margin-bottom: 20px;
+  width: 300px; /* adjust this to your liking */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container button {
+  padding: 10px; /* optional: add some padding */
+  width: 45%; /* keep this as is */
+}
+
+.App input, .App button {
+  font-size: 1em; /* adjust font size here */
 }
 
 .App-logo {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './App.css';
 
 function App() {
   const [username, setUsername] = useState("");
@@ -9,9 +10,14 @@ function App() {
     setPassword("");
   }
 
+  const handleForgotPassword = () => {
+    console.log("Forgot password button clicked");
+    // Add functionality for forgot password here in future
+  }
+
   return (
     <div className="App">
-      <h1>Login Page</h1>
+      <h1>Project Mercury</h1>
       <div>
         <input 
           type="text"
@@ -28,7 +34,10 @@ function App() {
           onChange={e => setPassword(e.target.value)}
         />
       </div>
-      <button onClick={handleLogin}>Login</button>
+      <div className="button-container">
+        <button onClick={handleLogin}>Login</button>
+        <button onClick={handleForgotPassword}>Forgot Password?</button>
+      </div>
     </div>
   );
 }
