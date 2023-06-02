@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './login.css';
+import './LoginPage.css';
 
 function App() {
   const [username, setUsername] = useState("");
@@ -42,4 +42,4 @@ function App() {
   );
 }
 
-export default login;
+export default LoginPage;
