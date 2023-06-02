@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './LoginPage.css';
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const history = useHistory();
+
   const handleLogin = () => {
     setUsername("");
     setPassword("");
+    history.push("/dashboard");
   }
 
   const handleForgotPassword = () => {
