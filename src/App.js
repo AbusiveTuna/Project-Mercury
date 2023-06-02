@@ -8,10 +8,10 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Switch>
+        <Routes>
           <Route exact path="/" component={LoginPage} />
           <Route path="/dashboard" component={Dashboard} />
-        </Switch>
+        </Routes>
       </div>
     </Router>
   );
