@@ -16,8 +16,8 @@ function LoginPage() {
   }
 
   return (
-    <div className="LoginPage2">
-      <h1>Login Page</h1>
+    <div className="LoginPage">
+      <h1>Login Page2</h1>
       <div>
         <input 
           type="text"
