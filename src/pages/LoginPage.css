@@ -1,6 +1,5 @@
 .LoginPage {
   position: absolute;
-  background-color: black;
   top: 0;
   left: 0;
   width: 100%;
@@ -32,6 +31,8 @@
 }
 
 .LoginPage-content {
+  background: black;
+  background-color: black;
   width: 30%;
   margin-left: 60%;
 }
