@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
 
-function App() {
+function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,8 +16,8 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Project Mercury</h1>
+    <div className="LoginPage">
+      <h1>Login Page</h1>
       <div>
         <input 
           type="text"
