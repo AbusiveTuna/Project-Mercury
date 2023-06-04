@@ -34,7 +34,7 @@ function Register() {
   return (
     <div className="Register">
       <div className="Register-content">
-        <h1>Register</h1>
+        <h1>New User Registration</h1>
         <input 
           type="text"
           placeholder="Enter Username"
