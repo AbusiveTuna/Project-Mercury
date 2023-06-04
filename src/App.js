@@ -6,7 +6,6 @@ import Dashboard from './pages/Dashboard';
 import ForgotPassword from './pages/ForgotPassword';
 import Register from './pages/Register';
 
-
 function App() {
   return (
     <Router>

@@ -1,3 +1,4 @@
+// Register.js
 import React, { useState } from 'react';
 import './Register.css';
 
@@ -28,7 +29,7 @@ function Register() {
     setBirthDate("");
     setErrorMessage("");
 
-    //add actual registration functionality here
+    // add actual registration functionality here
   }
 
   return (
@@ -49,6 +50,7 @@ function Register() {
             placeholder="Enter Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
+            className={email !== confirmEmail && email && confirmEmail ? "input-error" : ""}
           />
         </div>
         <div>
@@ -57,6 +59,7 @@ function Register() {
             placeholder="Confirm Email"
             value={confirmEmail}
             onChange={e => setConfirmEmail(e.target.value)}
+            className={email !== confirmEmail && email && confirmEmail ? "input-error" : ""}
           />
         </div>
         <div>
@@ -65,6 +68,7 @@ function Register() {
             placeholder="Enter Password"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            className={password !== confirmPassword && password && confirmPassword ? "input-error" : ""}
           />
         </div>
         <div>
@@ -73,6 +77,7 @@ function Register() {
             placeholder="Confirm Password"
             value={confirmPassword}
             onChange={e => setConfirmPassword(e.target.value)}
+            className={password !== confirmPassword && password && confirmPassword ? "input-error" : ""}
           />
         </div>
         <div>
