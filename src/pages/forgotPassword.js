@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './ForgotPassword.css';
 
-function forgotPassword() {
+function ForgotPassword() {
   const [email, setEmail] = useState("");
 
   const handleResetPassword = () => {
@@ -30,4 +30,4 @@ function forgotPassword() {
   );
 }
 
-export default forgotPassword;
+export default ForgotPassword;

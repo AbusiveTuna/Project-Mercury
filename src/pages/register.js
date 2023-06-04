@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css';
 
-function register() {
+function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
@@ -91,4 +91,4 @@ function register() {
   );
 }
 
-export default register;
+export default Register;
