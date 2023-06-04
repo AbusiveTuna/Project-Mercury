@@ -13,14 +13,14 @@
 }
 
 .Register-content input {
-  width: 60%;
+  width: 80%;
   padding: 15px;
   margin: 10px 0;
   font-size: 1.2em;
 }
 
 .Register-content .button-container {
-  width: 60%;
+  width: 80%; 
   display: flex;
   justify-content: center;
 }
