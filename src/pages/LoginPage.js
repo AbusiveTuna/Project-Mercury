@@ -15,10 +15,12 @@ function LoginPage() {
   }
 
   const handleForgotPassword = () => {
-    console.log("Forgot password button clicked");
-    // Add functionality for forgot password here in future
+    navigate("/forgotPassword");
   }
 
+  const handleRegister = () => {
+    navigate("/register");
+  }
 
   return (
     <div className="LoginPage">
@@ -42,7 +44,10 @@ function LoginPage() {
         </div>
         <div className="button-container">
           <button onClick={handleLogin}>Login</button>
-          <button onClick={handleForgotPassword}>Forgot Password?</button>
+        </div>
+        <div className="text-links">
+          <span className="forgot-password" onClick={handleForgotPassword}>Forgot Password?</span>
+          <span className="register" onClick={handleRegister}>New User? Register here</span>
         </div>
       </div>
     </div>

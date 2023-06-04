@@ -68,6 +68,21 @@
   color: #61dafb;
 }
 
+.text-links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.forgot-password, .register {
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.forgot-password:hover, .register:hover {
+  color: #ff0000;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
