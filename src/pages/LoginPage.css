@@ -4,15 +4,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("../resources/mercury.jpg") no-repeat left center fixed;
+  background: url("../resources/mercury.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-size: 100% auto;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .LoginPage input, .LoginPage .button-container {
@@ -32,46 +32,46 @@
 
 .LoginPage-content {
   width: 30%;
-  align-self: center;
-  margin-left: 60%;
+  margin: auto;
+  position: relative;
+  right: 0;
 }
 
 .LoginPage input, .LoginPage button {
-    font-size: 1em;
-  }
-  
+  font-size: 1em;
+}
+
+.LoginPage-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
   .LoginPage-logo {
-    height: 40vmin;
-    pointer-events: none;
+    animation: App-logo-spin infinite 20s linear;
   }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .LoginPage-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
+}
+
+.LoginPage-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.LoginPage-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .LoginPage-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  to {
+    transform: rotate(360deg);
   }
-  
-  .LoginPage-link {
-    color: #61dafb;
-  }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
+}
