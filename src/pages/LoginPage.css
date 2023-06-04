@@ -70,17 +70,17 @@
 
 .text-links {
   display: flex;
-  justify-content: space-between;
 }
 
 .forgot-password, .register {
-  color: #000;
+  color: #fff;
   text-decoration: underline;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .forgot-password:hover, .register:hover {
-  color: #ff0000;
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {

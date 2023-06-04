@@ -25,7 +25,6 @@ function LoginPage() {
   return (
     <div className="LoginPage">
       <div className="LoginPage-content">
-        <h1>Login Page</h1>
         <div>
           <input 
             type="text"
