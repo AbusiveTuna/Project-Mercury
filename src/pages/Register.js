@@ -46,24 +46,28 @@ function Register() {
           placeholder="Enter Email"
           value={email}
           onChange={e => setEmail(e.target.value)}
+          className={email !== confirmEmail && confirmEmail !== '' ? 'mismatch' : ''}
         />
         <input 
           type="email"
           placeholder="Confirm Email"
           value={confirmEmail}
           onChange={e => setConfirmEmail(e.target.value)}
+          className={email !== confirmEmail && confirmEmail !== '' ? 'mismatch' : ''}
         />
         <input 
           type="password"
           placeholder="Enter Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
+          className={password !== confirmPassword && confirmPassword !== '' ? 'mismatch' : ''}
         />
         <input 
           type="password"
           placeholder="Confirm Password"
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
+          className={password !== confirmPassword && confirmPassword !== '' ? 'mismatch' : ''}
         />
         <input 
           type="date"

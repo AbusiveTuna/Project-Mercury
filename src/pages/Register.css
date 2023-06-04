@@ -17,6 +17,7 @@
   padding: 15px;
   margin: 10px 0;
   font-size: 1.2em;
+  transition: border 0.3s ease-in-out;
 }
 
 .Register-content .button-container {
@@ -31,6 +32,6 @@
   font-size: 1.2em;
 }
 
-.input-error {
+.mismatch {
   border: 2px solid red;
 }
