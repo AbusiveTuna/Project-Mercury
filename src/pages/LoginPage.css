@@ -32,6 +32,7 @@
 
 .LoginPage-content {
   width: 30%;
+  align-self: center;
   margin-left: 60%;
 }
 
