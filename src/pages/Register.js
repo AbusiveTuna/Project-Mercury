@@ -39,9 +39,9 @@ function Register() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          username: username,
-          email: email,
-          password: password,
+          username,
+          email,
+          password,
           birthdate: birthDate
         })
       });
