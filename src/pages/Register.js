@@ -31,6 +31,35 @@ function Register() {
     );
   }
 
+  const submitForm = async () => {
+    try {
+      const response = await fetch('https://protected-badlands-72029.herokuapp.com/addUser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username,
+          email,
+          password,
+          birthdate: birthDate
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      resetForm();
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+
   return (
     <div className="Register">
       <div className="Register-content">
@@ -75,9 +104,9 @@ function Register() {
           value={birthDate}
           onChange={e => setBirthDate(e.target.value)}
         />
-        <div className="button-container">
-          <button onClick={resetForm} disabled={!isFormComplete()}>Sign Up</button>
-        </div>
+      <div className="button-container">
+        <button onClick={submitForm} disabled={!isFormComplete()}>Sign Up</button>
+      </div>
       </div>
     </div>
   );
