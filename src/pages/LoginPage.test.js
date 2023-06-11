@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('./css/LoginPage.css', () => ({}));
 
-test('renders login page', () => {
+test('Login Page Render', () => {
     act(() => {
         render(
           <MemoryRouter>
@@ -23,7 +23,7 @@ test('renders login page', () => {
   expect(loginButton).toBeInTheDocument();
 });
 
-test('handles login', () => {
+test('Successful Login', () => {
     act(() => {
         render(
           <MemoryRouter>
@@ -61,7 +61,7 @@ test('handles login', () => {
   );
 });
 
-test('displays error message for invalid login', async () => {
+test('Invalid Login', async () => {
     act(() => {
         render(
           <MemoryRouter>

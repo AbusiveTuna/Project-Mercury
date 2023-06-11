@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('./css/Register.css', () => ({}));
 
-test('renders register page', () => {
+test('Register Page Render', () => {
     act(() => {
         render(
           <MemoryRouter>
@@ -31,7 +31,7 @@ test('renders register page', () => {
   expect(signUpButton).toBeInTheDocument();
 });
 
-test('displays mismatch class when email and confirm email do not match', () => {
+test('Email Mismatch', () => {
     act(() => {
         render(
           <MemoryRouter>
@@ -49,7 +49,7 @@ test('displays mismatch class when email and confirm email do not match', () => 
   expect(confirmEmailInput).toHaveClass('mismatch');
 });
 
-test('displays mismatch class when password and confirm password do not match', () => {
+test('Password Mismatch', () => {
     act(() => {
         render(
           <MemoryRouter>
