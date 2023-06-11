@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './css/Register.css';
+import { useHistory } from 'react-router-dom';
 
 function Register() {
+  let history = useHistory();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
@@ -53,6 +55,9 @@ function Register() {
       const data = await response.json();
       console.log(data);
       resetForm();
+      
+      // Redirect to the login page
+      history.push('/');
 
     } catch (error) {
       console.error('Error:', error);
