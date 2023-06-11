@@ -53,12 +53,8 @@ function Register() {
       }
 
       const data = await response.json();
-      console.log(data);
       resetForm();
-      
-      if(data.success){
-        navigate('/');
-      }
+      navigate('/');
 
     } catch (error) {
       console.error('Error:', error);
