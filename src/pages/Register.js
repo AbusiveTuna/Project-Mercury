@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './css/Register.css';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
   let history = useHistory();
@@ -34,6 +34,7 @@ function Register() {
   }
 
   const submitForm = async () => {
+    const navigate = useNavigate();
     try {
       const response = await fetch('https://protected-badlands-72029.herokuapp.com/addUser', {
         method: 'POST',
@@ -56,8 +57,9 @@ function Register() {
       console.log(data);
       resetForm();
       
-      // Redirect to the login page
-      history.push('/');
+      if(data.success){
+        navigate('/');
+      }
 
     } catch (error) {
       console.error('Error:', error);
