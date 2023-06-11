@@ -3,7 +3,7 @@ import './css/Register.css';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
-  let history = useHistory();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
@@ -34,7 +34,6 @@ function Register() {
   }
 
   const submitForm = async () => {
-    const navigate = useNavigate();
     try {
       const response = await fetch('https://protected-badlands-72029.herokuapp.com/addUser', {
         method: 'POST',
