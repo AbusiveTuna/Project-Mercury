@@ -3,6 +3,7 @@ import { render, screen, fireEvent, act, waitFor } from '@testing-library/react'
 import Register from './Register';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
+import faker from 'faker';
 
 jest.mock('./css/Register.css', () => ({}));
 
@@ -65,4 +66,60 @@ test('Password Mismatch', () => {
 
   expect(passwordInput).toHaveClass('mismatch');
   expect(confirmPasswordInput).toHaveClass('mismatch');
+});
+
+test('Submit Form', async () => {
+  act(() => {
+    render(
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    );
+  });
+
+  const usernameInput = screen.getByPlaceholderText('Enter Username');
+  const emailInput = screen.getByPlaceholderText('Enter Email');
+  const confirmEmailInput = screen.getByPlaceholderText('Confirm Email');
+  const passwordInput = screen.getByPlaceholderText('Enter Password');
+  const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
+  const birthDateInput = screen.getByPlaceholderText('Enter Birth Date');
+  const signUpButton = screen.getByText('Sign Up');
+
+  const username = faker.internet.userName();
+  const email = 'test@example.com';
+  const password = 'password123';
+  const birthDate = '01-01-1990';
+
+  fireEvent.change(usernameInput, { target: { value: username } });
+  fireEvent.change(emailInput, { target: { value: email } });
+  fireEvent.change(confirmEmailInput, { target: { value: email } });
+  fireEvent.change(passwordInput, { target: { value: password } });
+  fireEvent.change(confirmPasswordInput, { target: { value: password } });
+  fireEvent.change(birthDateInput, { target: { value: birthDate } });
+
+  fireEvent.click(signUpButton);
+
+  await waitFor(() => {
+    expect(fetch).toHaveBeenCalledTimes(1);
+  });
+
+  expect(fetch).toHaveBeenCalledWith('https://protected-badlands-72029.herokuapp.com/addUser', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username: username,
+      email: email,
+      password: password,
+      birthdate: birthDate
+    })
+  });
+
+  expect(usernameInput).toHaveValue('');
+  expect(emailInput).toHaveValue('');
+  expect(confirmEmailInput).toHaveValue('');
+  expect(passwordInput).toHaveValue('');
+  expect(confirmPasswordInput).toHaveValue('');
+  expect(birthDateInput).toHaveValue('');
 });
