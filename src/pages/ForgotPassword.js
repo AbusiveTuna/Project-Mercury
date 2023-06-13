@@ -3,8 +3,30 @@ import './css/ForgotPassword.css';
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleResetPassword = () => {
+  const handleResetPassword = async () => {
+    try {
+      const response = await fetch('/requestReset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage(data.message);
+      } else {
+        setMessage(data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage('An error occurred while requesting a password reset');
+    }
+
     setEmail("");
   }
 
@@ -24,6 +46,7 @@ function ForgotPassword() {
         <div className="button-container">
           <button onClick={handleResetPassword}>Reset Password</button>
         </div>
+        {message && <p>{message}</p>}
       </div>
     </div>
   );
