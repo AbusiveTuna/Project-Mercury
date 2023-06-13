@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './css/VerifyCode.css';
 
 function VerifyCode() {
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [message, setMessage] = useState("");
-
+  const navigate = useNavigate();
+  
   const handleVerifyCode = async () => {
     try {
       const response = await fetch('/verifyCode', {
@@ -19,7 +21,7 @@ function VerifyCode() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(data.message);
+        navigate("/reset")
       } else {
         setMessage(data.message);
       }
