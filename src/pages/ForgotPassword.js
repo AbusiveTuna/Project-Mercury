@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './css/ForgotPassword.css';
 
 function ForgotPassword() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
@@ -18,7 +20,7 @@ function ForgotPassword() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(data.message);
+        navigate("/verify");
       } else {
         setMessage(data.message);
       }
