@@ -5,6 +5,8 @@ import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
 import ForgotPassword from './pages/ForgotPassword';
 import Register from './pages/Register';
+import VerifyCode from './pages/VerifyCode';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/verify" element={<VerifyCode />} />
+          <Route path="/reset" element={<ResetPassword />} />
         </Routes>
       </div>
     </Router>
