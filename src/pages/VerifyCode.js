@@ -10,7 +10,7 @@ function VerifyCode() {
   
   const handleVerifyCode = async () => {
     try {
-      const response = await fetch('/verifyCode', {
+      const response = await fetch('https://protected-badlands-72029.herokuapp.com/verifyCode', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
