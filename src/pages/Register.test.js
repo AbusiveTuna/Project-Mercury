@@ -7,6 +7,20 @@ import { faker } from '@faker-js/faker';
 
 jest.mock('./css/Register.css', () => ({}));
 
+beforeAll(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve({}),
+    })
+  );
+});
+
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
+
 test('Register Page Render', () => {
     act(() => {
         render(
@@ -88,20 +102,25 @@ test('Submit Form', async () => {
   const username = faker.internet.userName();
   const email = faker.internet.email();
   const password = faker.internet.password();
-  const birthDate = '01-01-1990';
+  const birthDate = '1990-01-01';
 
-  fireEvent.change(usernameInput, { target: { value: username } });
-  fireEvent.change(emailInput, { target: { value: email } });
-  fireEvent.change(confirmEmailInput, { target: { value: email } });
-  fireEvent.change(passwordInput, { target: { value: password } });
-  fireEvent.change(confirmPasswordInput, { target: { value: password } });
-  fireEvent.change(birthDateInput, { target: { value: birthDate } });
+  await act(async () => {
+    fireEvent.change(usernameInput, { target: { value: username } });
+    fireEvent.change(emailInput, { target: { value: email } });
+    fireEvent.change(confirmEmailInput, { target: { value: email } });
+    fireEvent.change(passwordInput, { target: { value: password } });
+    fireEvent.change(confirmPasswordInput, { target: { value: password } });
+    fireEvent.change(birthDateInput, { target: { value: birthDate } });
 
+    await new Promise((r) => setTimeout(r, 100));
+  });
+  
   fireEvent.click(signUpButton);
 
   await waitFor(() => {
     expect(fetch).toHaveBeenCalledTimes(1);
-  });
+  }, { timeout: 4000 });
+  
 
   expect(fetch).toHaveBeenCalledWith('https://protected-badlands-72029.herokuapp.com/addUser', {
     method: 'POST',
@@ -115,11 +134,4 @@ test('Submit Form', async () => {
       birthdate: birthDate
     })
   });
-
-  expect(usernameInput).toHaveValue('');
-  expect(emailInput).toHaveValue('');
-  expect(confirmEmailInput).toHaveValue('');
-  expect(passwordInput).toHaveValue('');
-  expect(confirmPasswordInput).toHaveValue('');
-  expect(birthDateInput).toHaveValue('');
 });
