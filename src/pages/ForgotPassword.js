@@ -9,7 +9,7 @@ function ForgotPassword() {
 
   const handleResetPassword = async () => {
     try {
-      const response = await fetch('/requestReset', {
+      const response = await fetch('https://protected-badlands-72029.herokuapp.com/requestReset', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
