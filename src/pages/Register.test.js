@@ -3,7 +3,7 @@ import { render, screen, fireEvent, act, waitFor } from '@testing-library/react'
 import Register from './Register';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 
 jest.mock('./css/Register.css', () => ({}));
 
@@ -86,8 +86,8 @@ test('Submit Form', async () => {
   const signUpButton = screen.getByText('Sign Up');
 
   const username = faker.internet.userName();
-  const email = 'test@example.com';
-  const password = 'password123';
+  const email = faker.internet.email();
+  const password = faker.internet.password();
   const birthDate = '01-01-1990';
 
   fireEvent.change(usernameInput, { target: { value: username } });
