@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const navigate = useNavigate();
+  const [isUsernameAvailable, setIsUsernameAvailable] = useState(true);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
@@ -76,16 +77,34 @@ function Register() {
     setIsOldEnough(age >= 13);
     setBirthDate(date);
   }
-
+  
+  const checkUsernameAvailability = async (username) => {
+  try {
+    const response = await fetch(`https://protected-badlands-72029.herokuapp.com/checkUsernameAvailability/${username}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    setIsUsernameAvailable(data.isAvailable);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+  
+const handleUsernameChange = (username) => {
+  setUsername(username);
+  checkUsernameAvailability(username);
+}
   return (
     <div className="Register">
       <div className="Register-content">
         <h1>New User Registration</h1>
+        {!isUsernameAvailable && <p>Username is not available.</p>}
         <input 
           type="text"
           placeholder="Enter Username"
           value={username}
-          onChange={e => setUsername(e.target.value)}
+          onChange={e => handleUsernameChange(e.target.value)}
         />
         <input 
           type="email"
