@@ -10,6 +10,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [birthDate, setBirthDate] = useState("");
+  const [isOldEnough, setIsOldEnough] = useState(true);
 
   const resetForm = () => {
     setUsername("");
@@ -29,7 +30,8 @@ function Register() {
       confirmPassword !== "" &&
       birthDate !== "" &&
       email === confirmEmail &&
-      password === confirmPassword
+      password === confirmPassword &&
+      isOldEnough
     );
   }
 
@@ -63,6 +65,17 @@ function Register() {
     }
   }
 
+  const handleBirthDateChange = (date) => {
+    const today = new Date();
+    const birthDate = new Date(date);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    setIsOldEnough(age >= 13);
+    setBirthDate(date);
+  }
 
   return (
     <div className="Register">
@@ -81,6 +94,7 @@ function Register() {
           onChange={e => setEmail(e.target.value)}
           className={email !== confirmEmail && confirmEmail !== '' ? 'mismatch' : ''}
         />
+        {email !== confirmEmail && confirmEmail !== '' && <p>Emails do not match.</p>}
         <input 
           type="email"
           placeholder="Confirm Email"
@@ -95,6 +109,7 @@ function Register() {
           onChange={e => setPassword(e.target.value)}
           className={password !== confirmPassword && confirmPassword !== '' ? 'mismatch' : ''}
         />
+        {password !== confirmPassword && confirmPassword !== '' && <p>Passwords do not match.</p>}
         <input 
           type="password"
           placeholder="Confirm Password"
@@ -106,11 +121,12 @@ function Register() {
           type="date"
           placeholder="Enter Birth Date"
           value={birthDate}
-          onChange={e => setBirthDate(e.target.value)}
+          onChange={e => handleBirthDateChange(e.target.value)}
         />
-      <div className="button-container">
-        <button onClick={submitForm} disabled={!isFormComplete()}>Sign Up</button>
-      </div>
+        {!isOldEnough && <p>You must be at least 13 years old to sign up.</p>}
+        <div className="button-container">
+            <button onClick={submitForm} disabled={!isFormComplete()}>Sign Up</button>
+        </div>
       </div>
     </div>
   );
