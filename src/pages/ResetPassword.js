@@ -4,7 +4,7 @@ import './css/ResetPassword.css';
 
 function ResetPassword() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(localStorage.getItem('email') || "");
   const [newPassword, setNewPassword] = useState("");
   const [message, setMessage] = useState("");
 
@@ -39,12 +39,6 @@ function ResetPassword() {
         <h1>Reset your password</h1>
         <p>Enter your new password below</p>
         <div>
-          <input 
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
           <input 
             type="password"
             placeholder="Enter New Password"
