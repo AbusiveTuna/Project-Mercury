@@ -93,18 +93,19 @@ function Register() {
   
 const handleUsernameChange = (username) => {
   setUsername(username);
-  checkUsernameAvailability(username);
-}
+};
+  
   return (
-    <div className="Register">
-      <div className="Register-content">
-        <h1>New User Registration</h1>
-        {!isUsernameAvailable && <p>Username is not available.</p>}
-        <input 
-          type="text"
-          placeholder="Enter Username"
-          value={username}
-          onChange={e => handleUsernameChange(e.target.value)}
+      <div className="Register">
+    <div className="Register-content">
+      <h1>New User Registration</h1>
+      {!isUsernameAvailable && <p>Username is not available.</p>}
+      <input 
+        type="text"
+        placeholder="Enter Username"
+        value={username}
+        onChange={e => handleUsernameChange(e.target.value)}
+        onBlur={e => checkUsernameAvailability(e.target.value)}
         />
         <input 
           type="email"
