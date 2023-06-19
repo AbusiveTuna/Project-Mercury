@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './css/VerifyCode.css';
 
 function VerifyCode() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(localStorage.getItem('email') || "");
   const [code, setCode] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
@@ -39,12 +39,6 @@ function VerifyCode() {
         <h1>Verify your code</h1>
         <p>Enter the verification code that was sent to your email</p>
         <div>
-          <input 
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
           <input 
             type="text"
             placeholder="Enter Code"
