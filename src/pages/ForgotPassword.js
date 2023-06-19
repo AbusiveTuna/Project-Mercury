@@ -7,30 +7,32 @@ function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleResetPassword = async () => {
-    try {
-      const response = await fetch('https://protected-badlands-72029.herokuapp.com/requestReset', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: email })
-      });
+const handleResetPassword = async () => {
+  try {
+    const response = await fetch('https://protected-badlands-72029.herokuapp.com/requestReset', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: email })
+    });
 
-      const data = await response.json();
+    const data = await response.json();
 
-      if (response.ok) {
-        navigate("/verify");
-      } else {
-        setMessage(data.message);
-      }
-    } catch (err) {
-      console.error(err);
-      setMessage('An error occurred while requesting a password reset');
+    if (response.ok) {
+      localStorage.setItem('email', email);
+      navigate("/verify");
+    } else {
+      setMessage(data.message);
     }
-
-    setEmail("");
+  } catch (err) {
+    console.error(err);
+    setMessage('An error occurred while requesting a password reset');
   }
+
+  setEmail("");
+}
+
 
   return (
     <div className="ForgotPassword">
