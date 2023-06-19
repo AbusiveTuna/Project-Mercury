@@ -63,7 +63,7 @@ function LoginPage() {
         <div className="button-container">
           <button onClick={handleLogin}>Login</button>
         </div>
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <div className="text-links">
           <span className="forgot-password" onClick={handleForgotPassword}>Forgot Password?</span>
           <span className="register" onClick={handleRegister}>New User? Register here</span>
