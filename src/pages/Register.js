@@ -63,7 +63,7 @@ function Register() {
 
     } catch (error) {
     }
-  }, [username, email, password, birthDate]);
+  }, [username, email, password, birthDate, navigate]);
 
   const handleBirthDateChange = (date) => {
     const today = new Date();

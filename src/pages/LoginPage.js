@@ -34,7 +34,7 @@ function LoginPage() {
       setIsLoading(false);
       setErrorMessage('Invalid username or password');
     });
-  }, [username, password]);
+  }, [username, password, navigate]);
 
   const handleForgotPassword = () => {
     navigate("/forgotPassword");
