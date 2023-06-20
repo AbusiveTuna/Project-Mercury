@@ -6,6 +6,11 @@ import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('./css/LoginPage.css', () => ({}));
 
+/* 
+* Test Name: Login Page Render
+* Unit Test ID: UT1
+* Description: Tests rendering of LoginPage.js
+*/
 test('Login Page Render', () => {
     act(() => {
         render(
@@ -23,6 +28,11 @@ test('Login Page Render', () => {
   expect(loginButton).toBeInTheDocument();
 });
 
+/* 
+* Test Name: Successful Login
+* Unit Test ID: UT2
+* Description: Tests a valid login and authentication
+*/
 test('Successful Login', () => {
     act(() => {
         render(
@@ -61,6 +71,11 @@ test('Successful Login', () => {
   );
 });
 
+/* 
+* Test Name: Invalid Login
+* Unit Test ID: UT3
+* Description: Tests an invalid login
+*/
 test('Invalid Login', async () => {
     act(() => {
         render(
@@ -73,7 +88,7 @@ test('Invalid Login', async () => {
   const passwordInput = screen.getByPlaceholderText('Password');
   const loginButton = screen.getByText('Login');
 
-  // Mock the fetch function to simulate an error response
+  //Mock the fetch function to simulate an error response
   global.fetch = jest.fn(() =>
     Promise.resolve({
       ok: false,
