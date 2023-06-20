@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/ForgotPassword.css';
@@ -20,10 +21,10 @@ function ForgotPassword() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [email]);
+  }, [email, handleResetPassword]);
 
 
-  const handleResetPassword = async () => {
+const handleResetPassword = useCallback(async () => {
     try {
       const response = await fetch('https://protected-badlands-72029.herokuapp.com/requestReset', {
         method: 'POST',
@@ -46,8 +47,7 @@ function ForgotPassword() {
     }
 
     setEmail("");
-  }
-
+  }, [email]);
 
   return (
     <div className="ForgotPassword">
