@@ -9,21 +9,7 @@ function ResetPassword() {
   const [newPassword, setNewPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Enter' && newPassword !== '') {
-        handleResetPassword();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [newPassword]);
-
-  const handleResetPassword = async () => {
+  const handleResetPassword = useCallback(async () => {
     try {
       const response = await fetch('https://protected-badlands-72029.herokuapp.com/resetPassword', {
         method: 'POST',
@@ -41,11 +27,26 @@ function ResetPassword() {
         setMessage(data.message);
       }
     } catch (err) {
+      console.error(err);
       setMessage('An error occurred while resetting the password');
     }
 
     setNewPassword("");
-  }
+  }, [newPassword]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter' && newPassword !== '') {
+        handleResetPassword();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [newPassword, handleResetPassword]);
 
   return (
     <div className="ResetPassword">

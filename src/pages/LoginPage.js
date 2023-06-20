@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/LoginPage.css';
-import Spinner from 'react-bootstrap/Spinner'; //npm install react-bootstrap bootstrap
+import Spinner from 'react-bootstrap/Spinner';
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -45,18 +46,18 @@ function LoginPage() {
     navigate("/register");
   }
   
-  const handleKeyPress = (event) => {
+  const handleKeyPress = useCallback((event) => {
     if (event.key === 'Enter' && username && password) {
       handleLogin();
     }
-  }
+  }, [username, password]);
   
   useEffect(() => {
     window.addEventListener('keypress', handleKeyPress);
     return () => {
       window.removeEventListener('keypress', handleKeyPress);
     }
-  }, [username, password]);
+  }, [username, password, handleKeyPress]);
   
  return (
     <div className="LoginPage">

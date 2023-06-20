@@ -14,20 +14,6 @@ function Register() {
   const [birthDate, setBirthDate] = useState("");
   const [isOldEnough, setIsOldEnough] = useState(true);
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Enter' && isFormComplete()) {
-        submitForm();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isFormComplete]);
-
   const resetForm = () => {
     setUsername("");
     setEmail("");
@@ -104,9 +90,23 @@ function Register() {
   }
 }
   
-const handleUsernameChange = (username) => {
-  setUsername(username);
-};
+  const handleUsernameChange = (username) => {
+    setUsername(username);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter' && isFormComplete()) {
+        submitForm();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isFormComplete]);
   
   return (
       <div className="Register">
