@@ -41,7 +41,6 @@ function VerifyCode() {
         setMessage(data.message);
       }
     } catch (err) {
-      console.error(err);
       setMessage('An error occurred during verification');
     }
 

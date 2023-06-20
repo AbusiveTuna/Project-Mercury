@@ -42,7 +42,6 @@ function ForgotPassword() {
         setMessage(data.message);
       }
     } catch (err) {
-      console.error(err);
       setMessage('An error occurred while requesting a password reset');
     }
 

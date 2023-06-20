@@ -77,7 +77,6 @@ function Register() {
       }
 
     } catch (error) {
-      console.error('Error:', error);
     }
   }
 
@@ -102,7 +101,6 @@ function Register() {
     const data = await response.json();
     setIsUsernameAvailable(data.isAvailable);
   } catch (error) {
-    console.error('Error:', error);
   }
 }
   
