@@ -20,7 +20,11 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-
+/* 
+* Test Name: Register Page Render
+* Unit Test ID: UT4
+* Description: Tests rendering of the Register.js page
+*/
 test('Register Page Render', () => {
     act(() => {
         render(
@@ -46,6 +50,11 @@ test('Register Page Render', () => {
   expect(signUpButton).toBeInTheDocument();
 });
 
+/* 
+* Test Name: Email Mismatch
+* Unit Test ID: UT5
+* Description: Tests that mismatching emails prevent submission of form
+*/
 test('Email Mismatch', () => {
     act(() => {
         render(
@@ -64,6 +73,11 @@ test('Email Mismatch', () => {
   expect(confirmEmailInput).toHaveClass('mismatch');
 });
 
+/* 
+* Test Name: Password Mismatch
+* Unit Test ID: UT6
+* Description: Tests that mismatching passwords prevent submission of form
+*/
 test('Password Mismatch', () => {
     act(() => {
         render(
@@ -82,6 +96,11 @@ test('Password Mismatch', () => {
   expect(confirmPasswordInput).toHaveClass('mismatch');
 });
 
+/* 
+* Test Name: Submit Form
+* Unit Test ID: UT7
+* Description: Tests valid and complete form submission of user registration
+*/
 test('Submit Form', async () => {
   act(() => {
     render(
