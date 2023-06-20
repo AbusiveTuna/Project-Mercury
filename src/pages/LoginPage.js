@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { useCallback } from 'react';
+import React, { useState, useEffect, useCallback  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/LoginPage.css';
 import Spinner from 'react-bootstrap/Spinner';
@@ -12,7 +10,7 @@ function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = useCallback(() => {
     setIsLoading(true);
     fetch('https://protected-badlands-72029.herokuapp.com/login', {
       method: 'POST',
@@ -36,7 +34,7 @@ function LoginPage() {
       setIsLoading(false);
       setErrorMessage('Invalid username or password');
     });
-  };
+  }, [username, password]);
 
   const handleForgotPassword = () => {
     navigate("/forgotPassword");

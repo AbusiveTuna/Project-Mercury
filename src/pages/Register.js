@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import './css/Register.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,7 +22,7 @@ function Register() {
     setBirthDate("");
   }
 
-  const isFormComplete = () => {
+  const isFormComplete = useCallback(() => {
     return (
       username !== "" &&
       email !== "" &&
@@ -35,9 +34,9 @@ function Register() {
       password === confirmPassword &&
       isOldEnough
     );
-  }
+  }, [username, email, confirmEmail, password, confirmPassword, birthDate, isOldEnough]);
 
-  const submitForm = async () => {
+  const submitForm = useCallback(async () => {
     try {
       const response = await fetch('https://protected-badlands-72029.herokuapp.com/addUser', {
         method: 'POST',
@@ -64,7 +63,7 @@ function Register() {
 
     } catch (error) {
     }
-  }
+  }, [username, email, password, birthDate]);
 
   const handleBirthDateChange = (date) => {
     const today = new Date();

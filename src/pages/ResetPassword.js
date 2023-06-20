@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCallback } from 'react';
 import './css/ResetPassword.css';
 
 function ResetPassword() {
