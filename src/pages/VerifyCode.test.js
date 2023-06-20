@@ -6,7 +6,12 @@ import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('./css/VerifyCode.css', () => ({}));
 
-test('VerifyCode Page Render', () => {
+/* 
+* Test Name: Verify Code Page Render
+* Unit Test ID: UT11
+* Description: Tests rendering of VerifyCode.js
+*/
+test('Verify Code Page Render', () => {
     act(() => {
         render(
           <MemoryRouter>
@@ -22,6 +27,11 @@ test('VerifyCode Page Render', () => {
   expect(verifyButton).toBeInTheDocument();
 });
 
+/* 
+* Test Name: Successful Code Verification 
+* Unit Test ID: UT12
+* Description: Tests code verification  logic
+*/
 test('Successful Code Verification', () => {
     act(() => {
         render(
@@ -57,6 +67,11 @@ test('Successful Code Verification', () => {
   );
 });
 
+/* 
+* Test Name: Unsuccessful Code Verification 
+* Unit Test ID: UT13
+* Description: Tests when an invalid code has been entered. 
+*/
 test('Failed Code Verification', async () => {
     act(() => {
         render(
