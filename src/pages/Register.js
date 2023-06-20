@@ -100,13 +100,13 @@ function Register() {
         submitForm();
       }
     };
-
+  
     window.addEventListener('keydown', handleKeyDown);
-
+  
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isFormComplete]);
+  }, [isFormComplete, submitForm]);
   
   return (
       <div className="Register">

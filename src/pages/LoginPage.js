@@ -50,7 +50,7 @@ function LoginPage() {
     if (event.key === 'Enter' && username && password) {
       handleLogin();
     }
-  }, [username, password]);
+  }, [username, password, handleLogin]);
   
   useEffect(() => {
     window.addEventListener('keypress', handleKeyPress);

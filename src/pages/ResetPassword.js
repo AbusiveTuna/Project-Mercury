@@ -32,7 +32,7 @@ function ResetPassword() {
     }
 
     setNewPassword("");
-  }, [newPassword]);
+  }, [newPassword, email, navigate]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {

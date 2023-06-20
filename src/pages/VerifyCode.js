@@ -32,7 +32,7 @@ function VerifyCode() {
     }
 
     setCode("");
-  }, [code]);
+  }, [code, email, navigate]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
