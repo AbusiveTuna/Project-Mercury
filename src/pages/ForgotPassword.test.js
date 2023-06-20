@@ -6,7 +6,12 @@ import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('./css/ForgotPassword.css', () => ({}));
 
-test('ForgotPassword Page Render', () => {
+/* 
+* Test Name: Forgot Password Page Render
+* Unit Test ID: UT8
+* Description: Tests rendering of ForgotPassword.js
+*/
+test('Forgot Password Page Render', () => {
     act(() => {
         render(
           <MemoryRouter>
@@ -21,6 +26,12 @@ test('ForgotPassword Page Render', () => {
   expect(resetPasswordButton).toBeInTheDocument();
 });
 
+
+/* 
+* Test Name: Successful Password Reset Request
+* Unit Test ID: UT9
+* Description: Tests a valid password request has been sent to the server.
+*/
 test('Successful Password Reset Request', () => {
     act(() => {
         render(
@@ -55,6 +66,11 @@ test('Successful Password Reset Request', () => {
   );
 });
 
+/* 
+* Test Name: Failed Password Reset Request
+* Unit Test ID: UT10
+* Description: Tests an invalid password request has been sent to the server.
+*/
 test('Failed Password Reset Request', async () => {
     act(() => {
         render(
