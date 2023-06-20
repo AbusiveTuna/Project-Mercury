@@ -14,11 +14,9 @@ test('ResetPassword Page Render', () => {
           </MemoryRouter>
         );
       });
-  const emailInput = screen.getByPlaceholderText('Enter Email');
   const passwordInput = screen.getByPlaceholderText('Enter New Password');
   const resetPasswordButton = screen.getByText('Reset Password');
 
-  expect(emailInput).toBeInTheDocument();
   expect(passwordInput).toBeInTheDocument();
   expect(resetPasswordButton).toBeInTheDocument();
 });
@@ -32,7 +30,6 @@ test('Successful Password Reset', () => {
         );
       });
       
-  const emailInput = screen.getByPlaceholderText('Enter Email');
   const passwordInput = screen.getByPlaceholderText('Enter New Password');
   const resetPasswordButton = screen.getByText('Reset Password');
 
@@ -44,12 +41,10 @@ test('Successful Password Reset', () => {
     })
   );
 
-  fireEvent.change(emailInput, { target: { value: 'test@test.com' } });
   fireEvent.change(passwordInput, { target: { value: 'newpassword' } });
 
   fireEvent.click(resetPasswordButton);
 
-  // Check if the fetch function was called with the correct arguments
   expect(fetch).toHaveBeenCalledWith(
     'https://protected-badlands-72029.herokuapp.com/resetPassword',
     {
@@ -70,7 +65,6 @@ test('Failed Password Reset', async () => {
           </MemoryRouter>
         );
       });
-  const emailInput = screen.getByPlaceholderText('Enter Email');
   const passwordInput = screen.getByPlaceholderText('Enter New Password');
   const resetPasswordButton = screen.getByText('Reset Password');
 
@@ -82,7 +76,7 @@ test('Failed Password Reset', async () => {
     })
   );
 
-  fireEvent.change(emailInput, { target: { value: 'test@test.com' } });
+
   fireEvent.change(passwordInput, { target: { value: 'newpassword' } });
 
   fireEvent.click(resetPasswordButton);

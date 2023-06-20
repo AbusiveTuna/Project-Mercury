@@ -14,11 +14,10 @@ test('VerifyCode Page Render', () => {
           </MemoryRouter>
         );
       });
-  const emailInput = screen.getByPlaceholderText('Enter Email');
+
   const codeInput = screen.getByPlaceholderText('Enter Code');
   const verifyButton = screen.getByText('Verify Code');
 
-  expect(emailInput).toBeInTheDocument();
   expect(codeInput).toBeInTheDocument();
   expect(verifyButton).toBeInTheDocument();
 });
@@ -31,7 +30,7 @@ test('Successful Code Verification', () => {
           </MemoryRouter>
         );
       });
-  const emailInput = screen.getByPlaceholderText('Enter Email');
+
   const codeInput = screen.getByPlaceholderText('Enter Code');
   const verifyButton = screen.getByText('Verify Code');
 
@@ -42,7 +41,6 @@ test('Successful Code Verification', () => {
     })
   );
 
-  fireEvent.change(emailInput, { target: { value: 'test@test.com' } });
   fireEvent.change(codeInput, { target: { value: '123456' } });
 
   fireEvent.click(verifyButton);
@@ -67,7 +65,7 @@ test('Failed Code Verification', async () => {
           </MemoryRouter>
         );
       });
-  const emailInput = screen.getByPlaceholderText('Enter Email');
+
   const codeInput = screen.getByPlaceholderText('Enter Code');
   const verifyButton = screen.getByText('Verify Code');
 
@@ -78,7 +76,6 @@ test('Failed Code Verification', async () => {
     })
   );
 
-  fireEvent.change(emailInput, { target: { value: 'test@test.com' } });
   fireEvent.change(codeInput, { target: { value: '123456' } });
 
   fireEvent.click(verifyButton);
