@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import './css/Register.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,6 +13,20 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [isOldEnough, setIsOldEnough] = useState(true);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter' && isFormComplete()) {
+        submitForm();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isFormComplete]);
 
   const resetForm = () => {
     setUsername("");

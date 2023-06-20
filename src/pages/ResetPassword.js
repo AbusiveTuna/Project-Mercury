@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/ResetPassword.css';
 
@@ -7,6 +8,20 @@ function ResetPassword() {
   const email = useState(localStorage.getItem('email') || "");
   const [newPassword, setNewPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter' && newPassword !== '') {
+        handleResetPassword();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [newPassword]);
 
   const handleResetPassword = async () => {
     try {

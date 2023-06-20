@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/ForgotPassword.css';
 
@@ -7,31 +8,46 @@ function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-const handleResetPassword = async () => {
-  try {
-    const response = await fetch('https://protected-badlands-72029.herokuapp.com/requestReset', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email: email })
-    });
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter' && email !== '') {
+        handleResetPassword();
+      }
+    };
 
-    const data = await response.json();
+    window.addEventListener('keydown', handleKeyDown);
 
-    if (response.ok) {
-      localStorage.setItem('email', email);
-      navigate("/verify");
-    } else {
-      setMessage(data.message);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [email]);
+
+
+  const handleResetPassword = async () => {
+    try {
+      const response = await fetch('https://protected-badlands-72029.herokuapp.com/requestReset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('email', email);
+        navigate("/verify");
+      } else {
+        setMessage(data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage('An error occurred while requesting a password reset');
     }
-  } catch (err) {
-    console.error(err);
-    setMessage('An error occurred while requesting a password reset');
-  }
 
-  setEmail("");
-}
+    setEmail("");
+  }
 
 
   return (
