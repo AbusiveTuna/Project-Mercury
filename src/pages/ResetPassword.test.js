@@ -6,7 +6,12 @@ import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('./css/ResetPassword.css', () => ({}));
 
-test('ResetPassword Page Render', () => {
+/* 
+* Test Name: Reset Password Page Render
+* Unit Test ID: UT14
+* Description: Tests rendering of ResetPassword.js
+*/
+test('Reset Password Page Render', () => {
     act(() => {
         render(
           <MemoryRouter>
@@ -21,6 +26,11 @@ test('ResetPassword Page Render', () => {
   expect(resetPasswordButton).toBeInTheDocument();
 });
 
+/* 
+* Test Name: Successful Password Reset 
+* Unit Test ID: UT15
+* Description: Tests when a valid password reset has occured
+*/
 test('Successful Password Reset', () => {
     act(() => {
         render(
@@ -57,6 +67,11 @@ test('Successful Password Reset', () => {
   );
 });
 
+/* 
+* Test Name: Unsuccessful Password Reset 
+* Unit Test ID: UT16
+* Description: Tests when a password reset was unsuccessful
+*/
 test('Failed Password Reset', async () => {
     act(() => {
         render(
