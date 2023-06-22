@@ -1,3 +1,7 @@
+.Register {
+  background-color: #121212;
+}
+
 .Register-content {
   display: flex;
   flex-direction: column;
@@ -6,9 +10,9 @@
   height: 100vh;
 }
 
-.Register-content h1 {
-  font-size: 2.5em;
-  margin-bottom: 20px;
+.Register-content h1,
+.Register-content p{
+  color: #ffffff;
 }
 
 .Register-content input {
@@ -16,6 +20,8 @@
   padding: 15px;
   margin: 10px 0;
   font-size: 1.2em;
+  background-color: #2b2b2b;
+  color: #ffffff;
   transition: border 0.3s ease-in-out;
 }
 
@@ -29,6 +35,16 @@
   padding: 15px;
   width: 100%;
   font-size: 1.2em;
+  background-color: #00ff00;
+  color: #ffffff;
+}
+
+.Register-content .button-container button:hover {
+  background-color: #00cc00;
+}
+
+.Register-content .button-container button[disabled] {
+  background-color: #7f7f7f;
 }
 
 .mismatch {
@@ -38,3 +54,8 @@
 input.mismatch {
   border: 2px solid red !important;
 }
+
+
+
+
+
