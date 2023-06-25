@@ -59,6 +59,7 @@ function LoginPage() {
   
  return (
     <div className="LoginPage">
+      <div className="about-section">Project Mercury - Realtime blood glucose monitoring and warning system for smarthome devices.</div>
       <div className="LoginPage-content">
         {isLoading ? (
           <Spinner />
