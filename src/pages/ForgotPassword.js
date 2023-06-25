@@ -52,7 +52,8 @@ function ForgotPassword() {
     <div className="ForgotPassword">
       <div className="ForgotPassword-content">
         <h1>Forgot your password?</h1>
-        <p>Enter your email below, if an account is found registered to that email you will be sent a link to reset your password</p>
+        <p>Enter your email below, if an account is found registered to that email
+           you will be sent a verfication code to reset your password</p>
         <div>
           <input 
             type="email"
