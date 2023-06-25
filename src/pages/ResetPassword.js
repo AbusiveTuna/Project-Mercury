@@ -4,7 +4,7 @@ import './css/ResetPassword.css';
 
 function ResetPassword() {
   const navigate = useNavigate();
-  const email = useState(localStorage.getItem('email') || "");
+  const [email] = useState(localStorage.getItem('email') || "");
   const [newPassword, setNewPassword] = useState("");
   const [message, setMessage] = useState("");
 

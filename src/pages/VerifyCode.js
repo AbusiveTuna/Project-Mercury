@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './css/VerifyCode.css';
 
 function VerifyCode() {
-  const email = useState(localStorage.getItem('email') || "");
+  const [email] = useState(localStorage.getItem('email') || "");
   const [code, setCode] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
