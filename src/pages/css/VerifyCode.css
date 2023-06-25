@@ -42,11 +42,18 @@
 }
 
 .VerifyCode-content .button-container button {
-    padding: 15px;
-    width: 100%;
-    font-size: 1.2em;
-    background-color: #00ff00;
-    color: #ffffff;
+  padding: 10px;
+  width: 40%;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 12px;
 }
 
 .VerifyCode-content .button-container button:hover {
