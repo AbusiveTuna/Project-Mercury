@@ -20,12 +20,12 @@
   width: 300px;
 }
 
-.button-container {
+.LoginPage .button-container {
   display: flex;
   justify-content: center;
 }
 
-.button-container button {
+.LoginPage .button-container button {
   padding: 10px;
   width: 45%;
   background-color: #4CAF50;
