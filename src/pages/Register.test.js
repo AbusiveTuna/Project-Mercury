@@ -157,8 +157,8 @@ test('Submit Form', async () => {
 
 /* 
 * Test Name: Reset Form
-* Unit Test ID: UT8
-* Description: Tests that form fields are reset after successful submission
+* Unit Test ID: UT17
+* Description: Tests resetting of the form on event
 */
 test('Reset Form', async () => {
   act(() => {
@@ -204,9 +204,9 @@ test('Reset Form', async () => {
 });
 
 /* 
-* Test Name: Check Username Availability
-* Unit Test ID: UT9
-* Description: Tests that username availability is checked when the username input field loses focus
+* Test Name: Check username availability
+* Unit Test ID: UT18
+* Description: Tests the username lookup availability functionality
 */
 test('Check Username Availability', async () => {
   act(() => {
@@ -231,6 +231,11 @@ test('Check Username Availability', async () => {
   });
 });
 
+/* 
+* Test Name: Username availability server error
+* Unit Test ID: UT19
+* Description: Tests error handling for username lookup
+*/
 
 test('Test error handling in checkUsernameAvailability', async () => {
   global.fetch = jest.fn(() =>
