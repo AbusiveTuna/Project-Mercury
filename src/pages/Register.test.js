@@ -154,3 +154,107 @@ test('Submit Form', async () => {
     })
   });
 });
+
+/* 
+* Test Name: Reset Form
+* Unit Test ID: UT8
+* Description: Tests that form fields are reset after successful submission
+*/
+test('Reset Form', async () => {
+  act(() => {
+    render(
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    );
+  });
+
+  const usernameInput = screen.getByPlaceholderText('Enter Username');
+  const emailInput = screen.getByPlaceholderText('Enter Email');
+  const confirmEmailInput = screen.getByPlaceholderText('Confirm Email');
+  const passwordInput = screen.getByPlaceholderText('Enter Password');
+  const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
+  const birthDateInput = screen.getByPlaceholderText('Enter Birth Date');
+  const resetButton = screen.getByText('Reset');
+
+  const username = faker.internet.userName();
+  const email = faker.internet.email();
+
+  await act(async () => {
+    fireEvent.change(usernameInput, { target: { value: username } });
+    fireEvent.change(emailInput, { target: { value: email } });
+    fireEvent.change(confirmEmailInput, { target: { value: email } });
+    fireEvent.change(passwordInput, { target: { value: 'password' } });
+    fireEvent.change(confirmPasswordInput, { target: { value: 'password' } });
+    fireEvent.change(birthDateInput, { target: { value: '1990-01-01' } });
+
+    await new Promise((r) => setTimeout(r, 100));
+  });
+
+  fireEvent.click(resetButton);
+
+  await waitFor(() => {
+    expect(usernameInput).toHaveValue('');
+    expect(emailInput).toHaveValue('');
+    expect(confirmEmailInput).toHaveValue('');
+    expect(passwordInput).toHaveValue('');
+    expect(confirmPasswordInput).toHaveValue('');
+    expect(birthDateInput).toHaveValue('');
+  });
+});
+
+/* 
+* Test Name: Check Username Availability
+* Unit Test ID: UT9
+* Description: Tests that username availability is checked when the username input field loses focus
+*/
+test('Check Username Availability', async () => {
+  act(() => {
+    render(
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    );
+  });
+
+  const usernameInput = screen.getByPlaceholderText('Enter Username');
+  
+  await act(async () => {
+    fireEvent.change(usernameInput, { target: { value: 'usernameAval' } });
+    await new Promise((r) => setTimeout(r, 100));
+  });
+
+  fireEvent.blur(usernameInput);
+
+  await waitFor(() => {
+    expect(fetch).toHaveBeenCalledWith('https://protected-badlands-72029.herokuapp.com/checkUsernameAvailability/usernameAval');
+  });
+});
+
+
+test('Test error handling in checkUsernameAvailability', async () => {
+  global.fetch = jest.fn(() =>
+    Promise.reject('Fetch error occurred')
+  );
+
+  act(() => {
+    render(
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    );
+  });
+
+  const usernameInput = screen.getByPlaceholderText('Enter Username');
+
+  await act(async () => {
+    fireEvent.change(usernameInput, { target: { value: 'username' } });
+    await new Promise((r) => setTimeout(r, 100));
+  });
+
+  fireEvent.blur(usernameInput);
+
+  await waitFor(() => {
+    expect(fetch).toHaveBeenCalledTimes(1);
+  });
+});

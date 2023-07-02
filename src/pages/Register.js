@@ -158,6 +158,7 @@ function Register() {
         {!isOldEnough && <p>You must be at least 13 years old to sign up.</p>}
         <div className="button-container">
             <button onClick={submitForm} disabled={!isFormComplete()}>Sign Up</button>
+            <button onClick={resetForm}>Reset</button>
         </div>
       </div>
     </div>
