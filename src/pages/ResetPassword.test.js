@@ -6,6 +6,23 @@ import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('./css/ResetPassword.css', () => ({}));
 
+beforeEach(() => {
+  Object.defineProperty(window, 'localStorage', {
+      value: {
+          getItem: jest.fn(() => 'test@test.com'),
+          setItem: jest.fn(() => null),
+          removeItem: jest.fn(() => null),
+      },
+      writable: true
+  });
+});
+
+afterEach(() => {
+  window.localStorage.getItem.mockClear();
+  window.localStorage.setItem.mockClear();
+  window.localStorage.removeItem.mockClear();
+});
+
 /* 
 * Test Name: Reset Password Page Render
 * Unit Test ID: UT14
