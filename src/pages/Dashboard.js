@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { BsGearFill } from 'react-icons/bs'; //need to install still?
+import BloodGlucoseGraph from './BloodGlucoseGraph';
 import './css/Dashboard.css';
 
 function Dashboard() {
@@ -17,7 +18,7 @@ function Dashboard() {
           <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-      <h1>TODO</h1>
+      <BloodGlucoseGraph />
     </>
   );
 }
