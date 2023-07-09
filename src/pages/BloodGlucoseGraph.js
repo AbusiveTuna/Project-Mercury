@@ -26,8 +26,6 @@ const options = {
   },
 };
 
-
-
 const BloodGlucoseGraph = () => (
   <>
     <Line data={data} options={options} />
