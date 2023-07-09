@@ -30,23 +30,25 @@
     background-color: rgba(255, 255, 255, .2);
     overflow: hidden;
     transition: transform 0.5s ease;
-    padding: 20px;
     transform: translateX(-100%);
   }
-  
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  
 
-  .close-button {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-  }  
+.sidebar-content {
+  padding: 20px;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.close-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+}
 
 
 .button-container {
