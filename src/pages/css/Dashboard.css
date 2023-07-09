@@ -11,11 +11,13 @@
     min-height: 50%;
   }
   
-  
   .settings-button {
     position: fixed;
     top: 10px;
     left: 10px;
+    background: none;
+    border: none;
+    font-size: 2rem;
   }
   
   .sidebar {
@@ -26,9 +28,12 @@
     height: 100vh;
     overflow: hidden;
     transition: width 0.5s ease;
+    display: none;
+    background-color: #f5f5f5;
   }
   
   .sidebar.open {
     width: 300px;
+    display: block;
   }
   
