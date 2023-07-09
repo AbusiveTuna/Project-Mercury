@@ -15,8 +15,9 @@ function Dashboard() {
   return (
     <>
       <div className="dashboard">
-        {isSidebarOpen ? <BsX className="settings-button" onClick={() => setSidebarOpen(!isSidebarOpen)} /> : <BsGearFill className="settings-button" onClick={() => setSidebarOpen(!isSidebarOpen)} />}
+        <BsGearFill className="settings-button" onClick={() => setSidebarOpen(true)} />
         <div className={isSidebarOpen ? "sidebar open" : "sidebar"}> 
+          <BsX className="settings-button close-button" onClick={() => setSidebarOpen(false)} />
           <ul>
             <li>TODO 1</li>
             <li>TODO 2</li>

@@ -39,14 +39,15 @@
   }
   
 
-.close-button {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-}
+  .close-button {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+  }
+  
 
 .button-container {
   margin-top: 20px;
