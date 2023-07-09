@@ -24,16 +24,16 @@ function Dashboard() {
             <li>TODO: Setting 3</li>
           </ul>
         </div>
-        <div className="button-container">
-          <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
-        </div>
-
         <div className="graph-container">
           <BloodGlucoseGraph />
+        </div>
+        <div className="button-container">
+              <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
         </div>
       </div>
     </>
   );
 }
+
 
 export default Dashboard;

@@ -2,31 +2,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100vh;
-}
-
-.graph-container {
+    padding-top: 10px;
+  }
+  
+  .graph-container {
     width: 100%;
-    height: 50%;
-    position: absolute;
-    bottom: 0;
-}
-
-.settings-button {
+    height: 40vh;
+  }
+  
+  .settings-button {
     position: fixed;
     top: 10px;
     left: 10px;
     cursor: pointer;
     font-size: 2rem;
-}
-
-.close-button {
+  }
+  
+  .close-button {
     cursor: pointer;
     font-size: 2rem;
-}
-
-.sidebar {
+  }
+  
+  .sidebar {
     position: fixed;
     top: 0;
     left: -300px;
@@ -36,14 +35,19 @@
     transition: left 0.5s ease;
     background-color: rgba(245, 245, 245, 0.9);
     padding: 20px;
-}
-
-.sidebar.open {
+  }
+  
+  .sidebar.open {
     left: 0;
-}
-
-.sidebar ul {
+  }
+  
+  .sidebar ul {
     list-style: none;
     padding: 0;
     margin: 0;
-}
+  }
+  
+  .button-container {
+    margin-top: 20px;
+  }
+  
