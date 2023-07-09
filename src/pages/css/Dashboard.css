@@ -8,7 +8,7 @@
   
   .graph-container {
     width: 40%;
-    height: 40%;
+    height: 40vh;
   }
   
   .settings-button {
@@ -21,17 +21,24 @@
   .sidebar {
     position: fixed;
     top: 0;
-    left: -3000px;
-    width: 300px;
+    left: 0;
+    width: 0;
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.8);
-    transition: left 0.5s ease;
+    overflow: hidden;
+    transition: width 0.5s ease;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between; 
+    padding: 2em;
   }
   
   .sidebar.open {
-    left: 0;
+    width: 300px;
   }
-
-  .button-container {
-    align-self: center;
+  
+  .close-btn {
+    align-self: flex-end;
   }
+  
