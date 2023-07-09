@@ -15,21 +15,18 @@ function Dashboard() {
   return (
     <>
       <div className="dashboard">
-        <button className="settings-button" onClick={() => setSidebarOpen(!isSidebarOpen)}>
-          <BsGearFill />
-        </button>
+        <BsGearFill className="settings-button" onClick={() => setSidebarOpen(!isSidebarOpen)}/>
         <div className={isSidebarOpen ? "sidebar open" : "sidebar"}>
-          <button className="close-button" onClick={() => setSidebarOpen(!isSidebarOpen)}>
-            <BsX />
-          </button>
-          <p>Option 1</p>
-          <p>Option 2</p>
-          <p>Option 3</p>
+          <BsX className="close-button" onClick={() => setSidebarOpen(!isSidebarOpen)}/>
+          <ul>
+            <li>Option 1</li>
+            <li>Option 2</li>
+            <li>Option 3</li>
+          </ul>
         </div>
         <div className="button-container">
           <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
         </div>
-
         <div className="graph-container">
           <BloodGlucoseGraph />
         </div>
