@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BsGearFill } from 'react-icons/bs';
+import { BsGearFill, BsX } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import BloodGlucoseGraph from './BloodGlucoseGraph';
 import './css/Dashboard.css';
@@ -15,19 +15,19 @@ function Dashboard() {
   return (
     <>
       <div className="dashboard">
-        <button className="settings-button" onClick={() => setSidebarOpen(!isSidebarOpen)}>
-          <BsGearFill />
-        </button>
+        <BsGearFill className="settings-button" onClick={() => setSidebarOpen(true)} />
         <div className={isSidebarOpen ? "sidebar open" : "sidebar"}>
+          <BsX className="close-button" onClick={() => setSidebarOpen(false)} />
           <ul>
-            <li>TODO: Settings option 1</li>
-            <li>TODO: Settings option 2</li>
+            <li>TODO: Setting 1</li>
+            <li>TODO: Setting 2</li>
+            <li>TODO: Setting 3</li>
           </ul>
         </div>
         <div className="button-container">
-            <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
+          <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
         </div>
-        
+
         <div className="graph-container">
           <BloodGlucoseGraph />
         </div>
