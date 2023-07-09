@@ -1,8 +1,7 @@
 import React from 'react';
+import 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
-import { Chart, LinearScale } from 'chart.js';
 
-Chart.register(LinearScale);
 
 const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June'],
@@ -18,8 +17,6 @@ const data = {
 };
 
 const options = {
-  responsive: true,
-  maintainAspectRatio: false,
   scales: {
     y: {
       beginAtZero: true,
@@ -27,10 +24,11 @@ const options = {
   },
 };
 
+
 const BloodGlucoseGraph = () => (
-  <div style={{ height: "400px", width: "100%" }}>
+  <>
     <Line data={data} options={options} />
-  </div>
+  </>
 );
 
 export default BloodGlucoseGraph;
