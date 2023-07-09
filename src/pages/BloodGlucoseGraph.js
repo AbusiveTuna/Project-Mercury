@@ -1,5 +1,8 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
+import { Chart, LinearScale } from 'chart.js';
+
+Chart.register(LinearScale);
 
 const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June'],
