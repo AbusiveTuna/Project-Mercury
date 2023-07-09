@@ -17,11 +17,8 @@ function Dashboard() {
     <>
       <div className="dashboard">
         <button className="settings-button" onClick={() => setSidebarOpen(!isSidebarOpen)}>Settings</button>
-        <div className={isSidebarOpen ? "sidebar open" : "sidebar"}>...</div>
-        <div className="button-container">
-              <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
-        </div>
-        <Dropdown>
+        <div className={isSidebarOpen ? "sidebar open" : "sidebar"}>
+          <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             <BsGearFill />
           </Dropdown.Toggle>
@@ -30,7 +27,11 @@ function Dashboard() {
             <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
             <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown>
+        </Dropdown></div>
+        <div className="button-container">
+              <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
+        </div>
+
         <div className="graph-container">
           <BloodGlucoseGraph />
         </div>

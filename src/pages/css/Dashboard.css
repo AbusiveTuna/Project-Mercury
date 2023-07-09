@@ -8,8 +8,9 @@
   
   .graph-container {
     width: 50%;
-    height: 50%;
+    min-height: 50%;
   }
+  
   
   .settings-button {
     position: fixed;
