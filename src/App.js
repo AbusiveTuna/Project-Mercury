@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import VerifyCode from './pages/VerifyCode';
 import ResetPassword from './pages/ResetPassword';
 import DexcomLink from './pages/DexcomLink';
+import HueLightsLink from './pages/HueLightsLink';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/verify" element={<VerifyCode />} />
           <Route path="/reset" element={<ResetPassword />} />
           <Route path="/dexcomLink" element={<DexcomLink />} />
+          <Route path="/hueLightsLink" element={<HueLightsLink />} />
         </Routes>
       </div>
     </Router>

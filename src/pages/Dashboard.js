@@ -12,10 +12,14 @@ function Dashboard() {
     navigate("/dexcomLink");
   }
 
+  const handleHueLink = () => {
+    navigate("/hueLightsLink");
+  }
+
   return (
     <>
       <div className="dashboard">
-        <BsGearFill className="settings-button" onClick={() => setSidebarOpen(true)} />
+        {!isSidebarOpen && <BsGearFill className="settings-button" onClick={() => setSidebarOpen(true)} />}
         <div className={isSidebarOpen ? "sidebar open" : "sidebar"}> 
           <BsX className="settings-button close-button" onClick={() => setSidebarOpen(false)} />
           <ul>
@@ -32,6 +36,11 @@ function Dashboard() {
         <div className="button-container">
               <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
         </div>
+
+        <div className="button-container">
+              <button onClick={handleHueLink}>Setup Hue Lights</button>
+        </div>
+
       </div>
     </>
   );
