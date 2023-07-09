@@ -2,43 +2,50 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     height: 100vh;
   }
   
-  .graph-container {
-    width: 40%;
-    height: 40vh;
-  }
-  
-  .settings-button {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 1;
-  }
-  
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100vh;
-    overflow: hidden;
-    transition: width 0.5s ease;
-    background-color: rgba(255, 255, 255, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between; 
-    padding: 2em;
-  }
-  
-  .sidebar.open {
-    width: 300px;
-  }
-  
-  .close-btn {
-    align-self: flex-end;
-  }
-  
+.graph-container {
+  width: 100%;
+  height: 40vh;
+}
+
+.settings-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 2rem;
+  color: black;
+  background: none;
+  border: none;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  transition: left 0.5s ease;
+  padding: 20px;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.close-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+}
+
+.button-container {
+  margin-top: 20px;
+}

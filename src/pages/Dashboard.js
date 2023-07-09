@@ -15,28 +15,25 @@ function Dashboard() {
   return (
     <>
       <div className="dashboard">
-        {isSidebarOpen ? (
-          <BsX className="settings-button close-btn" onClick={() => setSidebarOpen(false)} />
-        ) : (
-          <BsGearFill className="settings-button" onClick={() => setSidebarOpen(true)} />
-        )}
-        <div className={isSidebarOpen ? "sidebar open" : "sidebar"}>
+        {isSidebarOpen ? <BsX className="settings-button" onClick={() => setSidebarOpen(!isSidebarOpen)} /> : <BsGearFill className="settings-button" onClick={() => setSidebarOpen(!isSidebarOpen)} />}
+        <div className={isSidebarOpen ? "sidebar open" : "sidebar"}> 
           <ul>
             <li>TODO 1</li>
             <li>TODO 2</li>
             <li>TODO 3</li>
           </ul>
         </div>
+
         <div className="graph-container">
           <BloodGlucoseGraph />
         </div>
+        
         <div className="button-container">
-          <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
+              <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
         </div>
       </div>
     </>
   );
-  
 }
 
 export default Dashboard;
