@@ -1,9 +1,8 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { BsGearFill } from 'react-icons/bs'; //need to install still?
+import { BsGearFill } from 'react-icons/bs';
 import BloodGlucoseGraph from './BloodGlucoseGraph';
 import './css/Dashboard.css';
-//npm install redux-react-session
 
 
 function Dashboard() {
