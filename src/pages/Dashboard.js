@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BsGearFill, BsX } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
-import BloodGlucoseGraph from './BloodGlucoseGraph';
+import BloodGlucoseGraph from '../components/BloodGlucoseGraph';
 import './css/Dashboard.css';
 
 function Dashboard() {

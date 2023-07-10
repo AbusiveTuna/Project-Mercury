@@ -16,6 +16,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          DEXCOM_CLIENT_ID: ${{ secrets.DEXCOM_CLIENT_ID }}
+          DEXCOM_SECRET: ${{ secrets.DEXCOM_SECRET }}
         
 #       - name: Run Tests
 #         run: npm test

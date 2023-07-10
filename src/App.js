@@ -9,6 +9,7 @@ import VerifyCode from './pages/VerifyCode';
 import ResetPassword from './pages/ResetPassword';
 import DexcomLink from './pages/DexcomLink';
 import HueLightsLink from './pages/HueLightsLink';
+import DexcomRedirect from './components/DexcomRedirect';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/reset" element={<ResetPassword />} />
           <Route path="/dexcomLink" element={<DexcomLink />} />
           <Route path="/hueLightsLink" element={<HueLightsLink />} />
+          <Route path="/dexcomRedirect" element={<DexcomRedirect />} />
         </Routes>
       </div>
     </Router>
