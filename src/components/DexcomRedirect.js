@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { useSelector } from 'react-redux';
 
 function DexcomRedirect() {
+    const user_id = useSelector((state) => state.user_id);
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/LoginPage.css';
 import Spinner from 'react-bootstrap/Spinner';
+import { useDispatch } from 'react-redux';
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -9,6 +10,7 @@ function LoginPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = useCallback(() => {
     setIsLoading(true);
@@ -28,6 +30,7 @@ function LoginPage() {
     })
     .then(data => {
       setIsLoading(false);
+      dispatch({ type: 'SET_USER_ID', payload: data.user_id });
       navigate("/dashboard");
     })
     .catch(error => {
