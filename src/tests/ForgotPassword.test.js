@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import ForgotPassword from './ForgotPassword';
+import ForgotPassword from '../pages/ForgotPassword';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 
-jest.mock('./css/ForgotPassword.css', () => ({}));
+jest.mock('../pages/css/ForgotPassword.css', () => ({}));
 
 /* 
 * Test Name: Forgot Password Page Render

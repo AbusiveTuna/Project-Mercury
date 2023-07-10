@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent, act, waitFor } from '@testing-library/react';
-import Register from './Register';
+import Register from '../pages/Register';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 import { faker } from '@faker-js/faker';
 
-jest.mock('./css/Register.css', () => ({}));
+jest.mock('../pages/css/Register.css', () => ({}));
 
 beforeAll(() => {
   global.fetch = jest.fn(() =>

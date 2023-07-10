@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import ResetPassword from './ResetPassword';
+import ResetPassword from '../pages/ResetPassword';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 
-jest.mock('./css/ResetPassword.css', () => ({}));
+jest.mock('../pages/css/ResetPassword.css', () => ({}));
 
 beforeEach(() => {
   Object.defineProperty(window, 'localStorage', {

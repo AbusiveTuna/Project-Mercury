@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import LoginPage from './LoginPage';
+import LoginPage from '../pages/LoginPage';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 
-jest.mock('./css/LoginPage.css', () => ({}));
+jest.mock('../pages/css/LoginPage.css', () => ({}));
 
 /* 
 * Test Name: Login Page Render
