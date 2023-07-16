@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { BsGearFill, BsX } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import BloodGlucoseGraph from '../components/BloodGlucoseGraph';
 import './css/Dashboard.css';
 
 function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
-  const user_id = useSelector((state) => state.user_id);
-  console.log(user_id);
 
   const handleDexcomLink = () => {
     navigate("/dexcomLink");

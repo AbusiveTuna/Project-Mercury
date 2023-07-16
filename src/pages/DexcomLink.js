@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './css/DexcomLink.css';
 import Cookies from 'js-cookie';
+import { useSelector } from 'react-redux';
 
 function generateRandomString(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -13,6 +14,8 @@ function generateRandomString(length) {
 
 function DexcomLink() {
   const [state] = useState(generateRandomString(16));
+  const user_id = useSelector((state) => state.user_id);
+  console.log(user_id);
 
   const handleLinkDexcom = () => {
     const client_id = 'dDX20kXs42fPePYsJSD011ykp9m4dsbV';
