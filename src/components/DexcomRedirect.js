@@ -18,7 +18,7 @@ function DexcomRedirect() {
     if (code) {
       //Exchange the authorization code for an access token and refresh token
       const body = {
-        client_id: process.env.DEXCOM_CLIENT_ID,
+        client_id: 'dDX20kXs42fPePYsJSD011ykp9m4dsbV',
         client_secret: process.env.DEXCOM_SECRET,
         code,
         grant_type: 'authorization_code',

@@ -15,7 +15,7 @@ function DexcomLink() {
   const [state] = useState(generateRandomString(16));
 
   const handleLinkDexcom = () => {
-    const client_id = dDX20kXs42fPePYsJSD011ykp9m4dsbV;
+    const client_id = 'dDX20kXs42fPePYsJSD011ykp9m4dsbV';
     const redirect_uri = 'Https://ProjectsMercury.com/dexcomRedirect';
     const response_type = 'code';
     const scope = 'offline_access';
