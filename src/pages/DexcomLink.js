@@ -21,6 +21,12 @@ function DexcomLink() {
     const scope = 'offline_access';
     Cookies.set('dexcomState', state);
     const authUrl = `https://api.dexcom.com/v2/oauth2/login?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}&state=${state}`;
+    console.log(authUrl);
+    console.log(client_id);
+    console.log(redirect_uri);
+    console.log(response_type);
+    console.log(scope);
+    console.log(state);
     window.location.href = authUrl;
   };
 
