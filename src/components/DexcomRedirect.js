@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 function DexcomRedirect() {
   const user_id = useSelector((state) => state.user_id);
   console.log(user_id);
-  console.log(state);
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   
