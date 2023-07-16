@@ -2,6 +2,8 @@ import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import LoginPage from '../pages/LoginPage';
 import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from '../store';
 import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('../pages/css/LoginPage.css', () => ({}));
@@ -12,13 +14,15 @@ jest.mock('../pages/css/LoginPage.css', () => ({}));
 * Description: Tests rendering of LoginPage.js
 */
 test('Login Page Render', () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <LoginPage />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <Provider store={store}> {/* Wrap LoginPage with Provider */}
+        <MemoryRouter>
+          <LoginPage />
+        </MemoryRouter>
+      </Provider>
+    );
+  });
   const usernameInput = screen.getByPlaceholderText('Username');
   const passwordInput = screen.getByPlaceholderText('Password');
   const loginButton = screen.getByText('Login');
@@ -34,13 +38,15 @@ test('Login Page Render', () => {
 * Description: Tests a valid login and authentication
 */
 test('Successful Login', () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <LoginPage />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <Provider store={store}> {/* Wrap LoginPage with Provider */}
+        <MemoryRouter>
+          <LoginPage />
+        </MemoryRouter>
+      </Provider>
+    );
+  });
   const usernameInput = screen.getByPlaceholderText('Username');
   const passwordInput = screen.getByPlaceholderText('Password');
   const loginButton = screen.getByText('Login');
@@ -77,13 +83,15 @@ test('Successful Login', () => {
 * Description: Tests an invalid login
 */
 test('Invalid Login', async () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <LoginPage />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <Provider store={store}> {}
+        <MemoryRouter>
+          <LoginPage />
+        </MemoryRouter>
+      </Provider>
+    );
+  });
   const usernameInput = screen.getByPlaceholderText('Username');
   const passwordInput = screen.getByPlaceholderText('Password');
   const loginButton = screen.getByText('Login');
