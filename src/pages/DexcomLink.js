@@ -15,7 +15,6 @@ function generateRandomString(length) {
 function DexcomLink() {
   const [state] = useState(generateRandomString(16));
   const user_id = useSelector((state) => state.user_id);
-  console.log(user_id);
 
   const handleLinkDexcom = () => {
     const client_id = 'dDX20kXs42fPePYsJSD011ykp9m4dsbV';
@@ -23,13 +22,8 @@ function DexcomLink() {
     const response_type = 'code';
     const scope = 'offline_access';
     Cookies.set('dexcomState', state);
+    Cookies.set('user_id', user_id);
     const authUrl = `https://api.dexcom.com/v2/oauth2/login?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}&state=${state}`;
-    console.log(authUrl);
-    console.log(client_id);
-    console.log(redirect_uri);
-    console.log(response_type);
-    console.log(scope);
-    console.log(state);
     window.location.href = authUrl;
   };
 

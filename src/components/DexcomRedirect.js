@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function DexcomRedirect() {
-  const user_id = useSelector((state) => state.user_id);
-  console.log(user_id);
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   
@@ -14,6 +11,7 @@ function DexcomRedirect() {
     const code = urlParams.get('code');
     const state = urlParams.get('state');
     const expectedState = Cookies.get('dexcomState');
+    const user_id = Cookies.get('user_id');
 
     if (state !== expectedState) {
       setError('State mismatch error');
