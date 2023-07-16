@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
 
 function DexcomRedirect() {
-    const user_id = useSelector((state) => state.user_id);
+  const user_id = useSelector((state) => state.user_id);
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
@@ -33,22 +33,22 @@ function DexcomRedirect() {
       })
         .then((response) => response.json())
         .then((data) => {
-            const { access_token, refresh_token } = data;
-            fetch('https://protected-badlands-72029.herokuapp.com/storeDexcomTokens', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ user_id, access_token, refresh_token }),
-            });
-          })
-          .catch((error) => {
-            //?
+          const { access_token, refresh_token } = data;
+          fetch('https://protected-badlands-72029.herokuapp.com/storeDexcomTokens', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ user_id, access_token, refresh_token }),
+          });
+        })
+        .catch((error) => {
+          //?
         });
     } else {
       //No auth code
     }
-  }, []);
+  }, [user_id]);
 
   return <h1>Redirecting...</h1>;
 }
