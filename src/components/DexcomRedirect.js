@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function DexcomRedirect() {
   const user_id = useSelector((state) => state.user_id);
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
   
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -40,7 +42,7 @@ function DexcomRedirect() {
     } else {
       setError('No auth code found');
     }
-  }, [user_id]);
+  }, [user_id,navigate,setError]);
 
   return (
     <div>
