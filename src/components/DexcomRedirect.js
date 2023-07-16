@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useSelector } from 'react-redux';
 
 function DexcomRedirect() {
   const user_id = useSelector((state) => state.user_id);
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
@@ -11,46 +13,43 @@ function DexcomRedirect() {
     const expectedState = Cookies.get('dexcomState');
 
     if (state !== expectedState) {
-      //probably handle error here?
+      setError('State mismatch error');
       return;
     }
 
     if (code) {
-      //Exchange the authorization code for an access token and refresh token
-      const body = {
-        client_id: 'dDX20kXs42fPePYsJSD011ykp9m4dsbV',
-        client_secret: process.env.DEXCOM_SECRET,
-        code,
-        grant_type: 'authorization_code',
-        redirect_uri: 'Https://ProjectsMercury.com/dexcomRedirect',
-      };
-      fetch('https://api.dexcom.com/v2/oauth2/token', {
+      fetch('https://protected-badlands-72029.herokuapp.com/exchangeCode', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
-        body: new URLSearchParams(body),
+        body: JSON.stringify({ code, user_id }),
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
         .then((data) => {
-          const { access_token, refresh_token } = data;
-          fetch('https://protected-badlands-72029.herokuapp.com/storeDexcomTokens', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ user_id, access_token, refresh_token }),
-          });
+          navigate('/dashboard');
         })
         .catch((error) => {
-          //?
+          setError('An error occurred while exchanging the code');
         });
     } else {
-      //No auth code
+      setError('No auth code found');
     }
   }, [user_id]);
 
-  return <h1>Redirecting...</h1>;
+  return (
+    <div>
+      <h1>Redirecting...</h1>
+      {error && <p>{error}</p>}
+    </div>
+  );
 }
+
+
 
 export default DexcomRedirect;
