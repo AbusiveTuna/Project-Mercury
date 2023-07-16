@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function DexcomRedirect() {
