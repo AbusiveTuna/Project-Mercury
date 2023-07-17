@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
+import SmartAlert from '../utils/SmartAlert';
 
 const BloodGlucoseGraph = ({ onUpdateLastData }) => {
   const [dexcomData, setDexcomData] = useState(null);
