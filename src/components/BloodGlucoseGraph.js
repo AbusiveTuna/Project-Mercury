@@ -10,7 +10,7 @@ const BloodGlucoseGraph = () => {
   useEffect(() => {
     const getDexcomData = async () => {
       try {
-        const response = await fetch(`ttps://protected-badlands-72029.herokuapp.com/getDexcomData/${userId}`);
+        const response = await fetch(`https://protected-badlands-72029.herokuapp.com/getDexcomData/${userId}`);
         const data = await response.json();
         console.log(data);
 
