@@ -1,0 +1,14 @@
+.blood-glucose-level-container {
+  display: flex;
+  align-items: center;
+}
+
+.level {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.trend {
+  font-size: 18px;
+}
