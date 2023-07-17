@@ -15,14 +15,13 @@ const BloodGlucoseGraph = () => {
         console.log(rawData);
 
         if (response.ok) {
-          // Extract only the properties you care about from each item
           const data = rawData.map(item => ({
             displayTime: item.displayTime,
             value: item.value,
             trend: item.trend,
             trendRate: item.trendRate,
           }));
-
+          console.log("Parsed Data: ", data);
           setDexcomData(data);
         } else {
           console.error(rawData.message);
