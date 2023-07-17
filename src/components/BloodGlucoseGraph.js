@@ -22,6 +22,7 @@ const BloodGlucoseGraph = ({ onUpdateLastData }) => {
             trendRate: item.trendRate
           }));
           var smartAlert = SmartAlert(parsedData);
+          console.log(smartAlert);
           setDexcomData(parsedData);
 
           if (onUpdateLastData) {
