@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BsGearFill, BsX } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import BloodGlucoseGraph from '../components/BloodGlucoseGraph';
+import CurrentBG from '../components/CurrentBG';
 import './css/Dashboard.css';
 
 function Dashboard() {
@@ -14,6 +15,16 @@ function Dashboard() {
 
   const handleHueLink = () => {
     navigate("/hueLightsLink");
+  }
+
+  // Add state for the last blood glucose level and trend
+  const [lastLevel, setLastLevel] = useState(null);
+  const [lastTrend, setLastTrend] = useState(null);
+
+  // Add a function to update the last blood glucose level and trend
+  const handleUpdateLastData = (level, trend) => {
+    setLastLevel(level);
+    setLastTrend(trend);
   }
 
   return (
@@ -31,7 +42,10 @@ function Dashboard() {
         </div>
         </div>
         <div className="graph-container">
-          <BloodGlucoseGraph />
+          {lastLevel && lastTrend && (
+            <CurrentBG level={lastLevel} trend={lastTrend} />
+          )}
+          <BloodGlucoseGraph onUpdateLastData={handleUpdateLastData} />
         </div>
         
         <div className="button-container">
