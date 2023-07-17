@@ -1,10 +1,11 @@
 import React from 'react';
+import './css/CurrentBG.css';
 
 const CurrentBG = ({ level, trend }) => {
   return (
-    <div>
-      <div>{level}</div>
-      <div>{trend}</div>
+    <div className="blood-glucose-level-container">
+      <div className="level">{level}</div>
+      <div className="trend">{trend}</div>
     </div>
   );
 };
