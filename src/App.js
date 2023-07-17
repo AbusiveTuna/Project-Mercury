@@ -10,24 +10,31 @@ import ResetPassword from './pages/ResetPassword';
 import DexcomLink from './pages/DexcomLink';
 import HueLightsLink from './pages/HueLightsLink';
 import DexcomRedirect from './components/DexcomRedirect';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from './store';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/forgotPassword" element={<ForgotPassword />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/verify" element={<VerifyCode />} />
-          <Route path="/reset" element={<ResetPassword />} />
-          <Route path="/dexcomLink" element={<DexcomLink />} />
-          <Route path="/hueLightsLink" element={<HueLightsLink />} />
-          <Route path="/dexcomRedirect" element={<DexcomRedirect />} />
-        </Routes>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/forgotPassword" element={<ForgotPassword />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/verify" element={<VerifyCode />} />
+              <Route path="/reset" element={<ResetPassword />} />
+              <Route path="/dexcomLink" element={<DexcomLink />} />
+              <Route path="/hueLightsLink" element={<HueLightsLink />} />
+              <Route path="/dexcomRedirect" element={<DexcomRedirect />} />
+            </Routes>
+          </div>
+        </Router>
+      </PersistGate>
+    </Provider>
   );
 }
 
