@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import './css/LoginPage.css';
 import Spinner from 'react-bootstrap/Spinner';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const userId = useSelector((state) => state.userId);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
