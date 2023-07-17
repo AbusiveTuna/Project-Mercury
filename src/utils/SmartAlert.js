@@ -3,3 +3,5 @@ export const SmartAlert = (data) => {
   const result = 2;
   return result;
 }
+
+export default SmartAlert;
