@@ -13,7 +13,6 @@ const BloodGlucoseGraph = () => {
       try {
         const response = await fetch(`https://protected-badlands-72029.herokuapp.com/getDexcomData/${userId}`);
         const rawData = await response.json();
-        console.log(rawData);
 
         if (response.ok) {
           const parsedData = rawData.records.map(item => ({
@@ -45,20 +44,6 @@ const BloodGlucoseGraph = () => {
         fill: false,
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgba(255, 99, 132, 0.2)',
-      },
-      {
-        label: 'Trend',
-        data: dexcomData ? dexcomData.map(item => item.trend) : [],
-        fill: false,
-        backgroundColor: 'rgb(75, 192, 192)',
-        borderColor: 'rgba(75, 192, 192, 0.2)',
-      },
-      {
-        label: 'Trend Rate',
-        data: dexcomData ? dexcomData.map(item => item.trendRate) : [],
-        fill: false,
-        backgroundColor: 'rgb(153, 102, 255)',
-        borderColor: 'rgba(153, 102, 255, 0.2)',
       },
     ],
   };
