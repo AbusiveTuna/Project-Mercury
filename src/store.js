@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+//npm install redux-persist
 const initialState = {
   user_id: null,
 };
@@ -13,8 +15,16 @@ function reducer(state = initialState, action) {
   }
 }
 
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+
 const store = configureStore({
-  reducer,
+  reducer: persistedReducer,
 });
 
+export const persistor = persistStore(store);
 export default store;
