@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const BloodGlucoseGraph = () => {
   const [dexcomData, setDexcomData] = useState(null);
-  const userId = useSelector((state) => state.userId);
+  const userId = useSelector((state) => state.user_id);
 
   useEffect(() => {
     const getDexcomData = async () => {
