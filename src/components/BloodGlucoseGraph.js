@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { SmartAlert} from '../utils/SmartAlert';
 
-const BloodGlucoseGraph = () => {
+const BloodGlucoseGraph = ({ onUpdateLastData }) => {
   const [dexcomData, setDexcomData] = useState(null);
   const userId = useSelector((state) => state.user_id);
 
@@ -21,9 +20,13 @@ const BloodGlucoseGraph = () => {
             trend: item.trend,
             trendRate: item.trendRate
           }));
-          console.log("Parsed Data: ", parsedData);
           var smartAlert = SmartAlert(parsedData);
           setDexcomData(parsedData);
+
+          if (onUpdateLastData) {
+            const lastData = parsedData[parsedData.length - 1];
+            onUpdateLastData(lastData.value, lastData.trend);
+          }
         } else {
           console.error(rawData.message);
         }
@@ -33,7 +36,7 @@ const BloodGlucoseGraph = () => {
     }
 
     getDexcomData();
-  }, [userId]);
+  }, [userId, onUpdateLastData]);
 
   const data = {
     labels: dexcomData ? dexcomData.map(item => new Date(item.displayTime)) : [],
