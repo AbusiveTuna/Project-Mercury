@@ -15,14 +15,14 @@ const BloodGlucoseGraph = () => {
         console.log(rawData);
 
         if (response.ok) {
-          const data = rawData.map(item => ({
+          const parsedData = rawData.records.map(item => ({
             displayTime: item.displayTime,
             value: item.value,
             trend: item.trend,
-            trendRate: item.trendRate,
+            trendRate: item.trendRate
           }));
-          console.log("Parsed Data: ", data);
-          setDexcomData(data);
+          console.log("Parsed Data: ", parsedData);
+          setDexcomData(parsedData);
         } else {
           console.error(rawData.message);
         }
