@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
+import { SmartAlert} from '../utils/SmartAlert';
 
 const BloodGlucoseGraph = () => {
   const [dexcomData, setDexcomData] = useState(null);
@@ -22,6 +23,7 @@ const BloodGlucoseGraph = () => {
             trendRate: item.trendRate
           }));
           console.log("Parsed Data: ", parsedData);
+          var smartAlert = SmartAlert(parsedData);
           setDexcomData(parsedData);
         } else {
           console.error(rawData.message);
