@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsX } from 'react-icons/bs';
+import './css/Settings.css';
 
 function Settings({ isSidebarOpen, setSidebarOpen }) {
   return (
