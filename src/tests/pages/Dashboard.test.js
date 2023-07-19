@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Dashboard from '../pages/Dashboard';
+import Dashboard from '../../pages/Dashboard';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 
-jest.mock('../components/BloodGlucoseGraph', () => () => <div data-testid="mock-blood-glucose-graph" />);
-jest.mock('../pages/css/Dashboard.css', () => ({}));
+jest.mock('../../components/BloodGlucoseGraph', () => () => <div data-testid="mock-blood-glucose-graph" />);
+jest.mock('../../pages/css/Dashboard.css', () => ({}));
 
 /* 
 * Test Name: Dashboard Page Render

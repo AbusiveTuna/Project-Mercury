@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import DexcomLink from '../pages/DexcomLink';
+import DexcomLink from '../../pages/DexcomLink';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from '../store';
+import store from '../../store';
 import 'source-map-support/register';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -14,7 +14,7 @@ jest.mock('js-cookie', () => ({
   },
 }));
 
-jest.mock('../pages/css/DexcomLink.css', () => ({}));
+jest.mock('../../pages/css/DexcomLink.css', () => ({}));
 
 /* 
 * Test Name: DexcomLink Render

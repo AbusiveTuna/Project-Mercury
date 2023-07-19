@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import VerifyCode from '../pages/VerifyCode';
+import VerifyCode from '../../pages/VerifyCode';
 import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 
-jest.mock('../pages/css/VerifyCode.css', () => ({}));
+jest.mock('../../pages/css/VerifyCode.css', () => ({}));
 
 beforeEach(() => {
   Object.defineProperty(window, 'localStorage', {
