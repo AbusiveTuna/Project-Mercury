@@ -19,8 +19,8 @@ jobs:
         env:
           DEXCOM_SECRET: ${{ secrets.DEXCOM_SECRET }}
         
-#       - name: Run Tests
-#         run: npm test
+      - name: Run Tests
+        run: npm test
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
