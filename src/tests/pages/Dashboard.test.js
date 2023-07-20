@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('../../components/BloodGlucoseGraph', () => () => <div data-testid="mock-blood-glucose-graph" />);
 jest.mock('../../pages/css/Dashboard.css', () => ({}));
-
+jest.mock('../../components/css/CurrentBG.css', () => ({}));
 /* 
 * Test Name: Dashboard Page Render
 * Unit Test ID: UT20
