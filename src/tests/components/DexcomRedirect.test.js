@@ -5,7 +5,8 @@ import DexcomRedirect from '../../components/DexcomRedirect'
 import Cookies from 'js-cookie';
 import { MemoryRouter } from 'react-router-dom';
 
-jest.mock('js-cookie');
+jest.mock('js-cookie', ()=> jest.fn());
+
 
 describe('DexcomRedirect', () => {
   it('renders Redirecting... text', () => {
@@ -26,5 +27,16 @@ describe('DexcomRedirect', () => {
     );
     expect(screen.getByText('State mismatch error')).toBeInTheDocument();
   });
+
+it('renders error message when no auth code is found', () => {
+  Cookies.get.mockReturnValueOnce('user_id').mockReturnValueOnce('dexcomState').mockReturnValueOnce('dexcomState');
+  render(
+    <MemoryRouter initialEntries={['/?state=dexcomState']}>
+      <DexcomRedirect />
+    </MemoryRouter>
+  );
+  expect(screen.getByText('No auth code found')).toBeInTheDocument();
+});
+
   
 });
