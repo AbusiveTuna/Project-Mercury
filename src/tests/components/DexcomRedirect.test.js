@@ -27,15 +27,20 @@ describe('DexcomRedirect', () => {
     expect(screen.getByText('State mismatch error')).toBeInTheDocument();
   });
 
-it('renders error message when no auth code is found', () => {
-  Cookies.get.mockReturnValueOnce('user_id').mockReturnValueOnce('dexcomState').mockReturnValueOnce('dexcomState');
-  render(
-    <MemoryRouter initialEntries={['/?state=dexcomState']}>
-      <DexcomRedirect />
-    </MemoryRouter>
-  );
-  expect(screen.getByText('No auth code found')).toBeInTheDocument();
-});
+  it('renders error message when no auth code is found', () => {
+    Cookies.get
+      .mockImplementation((key) => {
+        console.log(`Cookies.get('${key}') called`);
+        return key === 'user_id' ? 'user_id' : 'dexcomState';
+      });
+    render(
+      <MemoryRouter initialEntries={['/?state=dexcomState']}>
+        <DexcomRedirect />
+      </MemoryRouter>
+    );
+    expect(screen.getByText('No auth code found')).toBeInTheDocument();
+  });
+  
 
   
 });
