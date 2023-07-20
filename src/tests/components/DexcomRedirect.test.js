@@ -5,8 +5,9 @@ import DexcomRedirect from '../../components/DexcomRedirect'
 import Cookies from 'js-cookie';
 import { MemoryRouter } from 'react-router-dom';
 
+console.log(Cookies);
 jest.mock('js-cookie');
-
+console.log(Cookies);
 describe('DexcomRedirect', () => {
   it('renders Redirecting... text', () => {
     render(
