@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import DexcomRedirect from '../../components/DexcomRedirect'
 import Cookies from 'js-cookie';
 import { MemoryRouter } from 'react-router-dom';
