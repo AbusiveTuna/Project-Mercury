@@ -1,26 +1,24 @@
 import React from 'react';
 import './css/CurrentBG.css';
+import downTrend from '../resources/downTrend.png';
 
 const CurrentBG = ({ level, trend }) => {
-  let trendClass = '';
+  let rotation = 0;
   if (trend === '90down') {
-    trendClass = 'trend-down';
+    rotation = 0;
   } else if (trend === '90up') {
-    trendClass = 'trend-up';
+    rotation = 180;
   } else if (trend === '45up') {
-    trendClass = 'trend-up-right';
+    rotation = 135;
   } else if (trend === '45down') {
-    trendClass = 'trend-down-right';
-  }
-  else{
-    trendClass = 'trend-up';
+    rotation = 45;
   }
 
   return (
     <div className="blood-glucose-level-container">
       <div className="level-container">
         <div className="level">{level}</div>
-        <div className={`trend ${trendClass}`}></div>
+        <img src={downTrend} alt="trend" style={{ transform: `rotate(${rotation}deg)` }} />
       </div>
     </div>
   );
