@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import DexcomRedirect from './DexcomRedirect';
+import DexcomRedirect from '../../components/DexcomRedirect'
 import Cookies from 'js-cookie';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
