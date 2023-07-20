@@ -1,6 +1,5 @@
 import React from 'react';
 import './css/CurrentBG.css';
-import { upload } from '@testing-library/user-event/dist/upload';
 
 const CurrentBG = ({ level, trend }) => {
   let trendClass = '';
