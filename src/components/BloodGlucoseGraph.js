@@ -40,12 +40,36 @@ const BloodGlucoseGraph = ({ onUpdateLastData }) => {
     getDexcomData();
   }, [userId, onUpdateLastData]);
 
+  // Determine the start and end times for the graph
+  let startTime, endTime;
+  if (dexcomData && dexcomData.length > 0) {
+    endTime = new Date(dexcomData[dexcomData.length - 1].displayTime);
+    endTime.setMinutes(endTime.getMinutes() + 10);
+    startTime = new Date(endTime.getTime());
+    startTime.setHours(startTime.getHours() - 4);
+  }
+
+  // Filter the data to only include points within the time range
+  const filteredData = dexcomData ? dexcomData.filter(item => {
+    const displayTime = new Date(item.displayTime);
+    return displayTime >= startTime && displayTime <= endTime;
+  }) : [];
+
+  // Format the x-axis labels
+  const formatTimeLabel = (value) => {
+    const date = new Date(value);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    return `${hours % 12 || 12}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+  };
+
   const data = {
-    labels: dexcomData ? dexcomData.map(item => new Date(item.displayTime)) : [],
+    labels: filteredData.map(item => formatTimeLabel(item.displayTime)),
     datasets: [
       {
         label: 'Blood Glucose Level',
-        data: dexcomData ? dexcomData.map(item => item.value) : [],
+        data: filteredData.map(item => item.value),
         fill: false,
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgba(255, 99, 132, 0.2)',
@@ -58,7 +82,16 @@ const BloodGlucoseGraph = ({ onUpdateLastData }) => {
     maintainAspectRatio: false,
     scales: {
       y: {
-        beginAtZero: true,
+        min: 0,
+        max: 400,
+        ticks: {
+          stepSize: 100,
+        },
+      },
+      x: {
+        ticks: {
+          callback: formatTimeLabel,
+        },
       },
     },
   };
