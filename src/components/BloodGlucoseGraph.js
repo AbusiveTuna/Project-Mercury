@@ -7,6 +7,7 @@ import SmartAlert from '../utils/SmartAlert';
 const BloodGlucoseGraph = ({ onUpdateLastData }) => {
   const [dexcomData, setDexcomData] = useState(null);
   const userId = useSelector((state) => state.user_id);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getDexcomData = async () => {
@@ -30,9 +31,11 @@ const BloodGlucoseGraph = ({ onUpdateLastData }) => {
             onUpdateLastData(lastData.value, lastData.trend);
           }
         } else {
+          setError('Failed to fetch Dexcom data');
           console.error(rawData.message);
         }
       } catch (error) {
+        setError('Failed to fetch Dexcom data');
         console.error('Failed to fetch Dexcom data: ', error);
       }
     }
@@ -87,12 +90,14 @@ const BloodGlucoseGraph = ({ onUpdateLastData }) => {
       },
     },
   };
-  
-
 
   return (
     <>
-      <Line data={data} options={options} />
+      {error ? (
+        <div>{error}</div>
+      ) : (
+        <Line data={data} options={options} />
+      )}
     </>
   );
 };

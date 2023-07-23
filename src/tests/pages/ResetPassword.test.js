@@ -21,7 +21,9 @@ afterEach(() => {
   window.localStorage.getItem.mockClear();
   window.localStorage.setItem.mockClear();
   window.localStorage.removeItem.mockClear();
+  jest.restoreAllMocks();
 });
+
 
 /* 
 * Test Name: Reset Password Page Render

@@ -24,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --coverage --silent",
+    "test": "jest --coverage --silent --verbose",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -55,6 +55,10 @@
         "lines": 80,
         "statements": 80
       }
+    },
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/tests/resources/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/src/tests/resources/styleMock.js"
     }
   },
   "devDependencies": {

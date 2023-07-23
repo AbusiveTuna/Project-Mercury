@@ -8,6 +8,10 @@ import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('../../pages/css/LoginPage.css', () => ({}));
 
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
 /* 
 * Test Name: Login Page Render
 * Unit Test ID: UT1

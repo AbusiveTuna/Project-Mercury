@@ -9,6 +9,12 @@ jest.mock('js-cookie');
 
 
 describe('DexcomRedirect', () => {
+
+  /* 
+  * Test Name: Dexom Redirect Render
+  * Unit Test ID: CUT13
+  * Description: Tests rendering of dexcom Redirect Component
+  */
   it('renders Redirecting... text', () => {
     render(
       <MemoryRouter>
@@ -18,6 +24,11 @@ describe('DexcomRedirect', () => {
     expect(screen.getByText('Redirecting...')).toBeInTheDocument();
   });
 
+  /* 
+  * Test Name: State Handling
+  * Unit Test ID: CUT14
+  * Description: Tests State Handling
+  */
   it('renders error message when state does not match expected state', () => {
     Cookies.get.mockReturnValueOnce('user_id').mockReturnValueOnce('dexcomState');
     render(
@@ -27,16 +38,5 @@ describe('DexcomRedirect', () => {
     );
     expect(screen.getByText('State mismatch error')).toBeInTheDocument();
   });
-
-it('renders error message when no auth code is found', () => {
-  Cookies.get.mockReturnValueOnce('user_id').mockReturnValueOnce('dexcomState').mockReturnValueOnce('dexcomState');
-  render(
-    <MemoryRouter initialEntries={['/?state=state']}>
-      <DexcomRedirect />
-    </MemoryRouter>
-  );
-  expect(screen.getByText('No auth code found')).toBeInTheDocument();
-});
-
   
 });

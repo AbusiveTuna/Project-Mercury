@@ -14,11 +14,15 @@ jest.mock('js-cookie', () => ({
   },
 }));
 
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
 jest.mock('../../pages/css/DexcomLink.css', () => ({}));
 
 /* 
 * Test Name: DexcomLink Render
-* Unit Test ID: UT22
+* Unit Test ID: UT27
 * Description: Tests rendering of DexcomLink.js
 */
 test('DexcomLink Render', () => {

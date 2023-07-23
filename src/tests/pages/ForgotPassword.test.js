@@ -6,6 +6,10 @@ import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('../../pages/css/ForgotPassword.css', () => ({}));
 
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
 /* 
 * Test Name: Forgot Password Page Render
 * Unit Test ID: UT8

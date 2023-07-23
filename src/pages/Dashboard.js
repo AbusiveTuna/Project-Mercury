@@ -10,14 +10,14 @@ function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [lastLevel, setLastLevel] = useState(null);
   const [lastTrend, setLastTrend] = useState(null);
-  const [isDexcomData, setIsDexcomData] = useState(false);
-  const navigate = useNavigate();
+  const [hasDataLoaded, setHasDataLoaded] = useState(false); // new state variable
+  let navigate = useNavigate();
 
   useEffect(() => {
-    if (lastLevel && lastTrend) {
-      setIsDexcomData(true);
+    if (lastLevel !== null && lastTrend !== null) {
+      setHasDataLoaded(true);
     } else {
-      setIsDexcomData(false);
+      setHasDataLoaded(false);
     }
   }, [lastLevel, lastTrend]);
 
@@ -37,17 +37,17 @@ function Dashboard() {
   return (
     <>
       <div className="dashboard">
-        {!isSidebarOpen && <BsGearFill className="settings-button" onClick={() => setSidebarOpen(true)} />}
+        {!isSidebarOpen && <BsGearFill className="settings-button" data-testid="settings-button" onClick={() => setSidebarOpen(true)} />}
         <Settings isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
         <div className="graph-container">
-          {lastLevel && lastTrend && (
+          {hasDataLoaded && (
             <CurrentBG level={lastLevel} trend={lastTrend} />
           )}
           <BloodGlucoseGraph onUpdateLastData={handleUpdateLastData} />
         </div>
         
         <div className="button-group">
-          {!isDexcomData && (
+          {!hasDataLoaded && (
             <div className="button-container">
               <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
             </div>

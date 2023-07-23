@@ -12,7 +12,7 @@ function DexcomRedirect() {
     const code = urlParams.get('code');
     const state = urlParams.get('state');
     const expectedState = Cookies.get('dexcomState');
-
+    
     if (state !== expectedState) {
       setError('State mismatch error');
       return;
