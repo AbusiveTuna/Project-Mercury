@@ -20,7 +20,7 @@ const BloodGlucoseGraph = ({ onUpdateLastData }) => {
             value: item.value,
             trend: item.trend,
             trendRate: item.trendRate
-          }));
+          })).reverse();
           var smartAlert = SmartAlert(parsedData);
           console.log(smartAlert);
           setDexcomData(parsedData);
@@ -89,12 +89,20 @@ const BloodGlucoseGraph = ({ onUpdateLastData }) => {
         },
       },
       x: {
+        type: 'time',
+        time: {
+          unit: 'minute',
+          displayFormats: {
+            minute: 'h:mm a'
+          }
+        },
         ticks: {
-          callback: formatTimeLabel,
+          source: 'labels'
         },
       },
     },
   };
+  
 
   return (
     <>
