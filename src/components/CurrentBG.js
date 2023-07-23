@@ -4,20 +4,28 @@ import downTrend from '../resources/downTrend.png';
 
 const CurrentBG = ({ level, trend }) => {
   let rotation = 0;
-  if (trend === '90down') {
+  let levelStyle = {};
+  if (trend === 'singleDown' || trend === 'doubleDown') {
     rotation = 0;
-  } else if (trend === '90up') {
+    levelStyle = {top: '10px'};
+  } else if (trend === 'singleUp' || trend === 'doubleUp') {
     rotation = 180;
-  } else if (trend === '45up') {
-    rotation = 135;
-  } else if (trend === '45down') {
-    rotation = 45;
+    levelStyle = {bottom: '10px'};
+  } else if (trend === 'fortyFiveUp') {
+    rotation = 245;
+    levelStyle = {left: '208px'};
+  } else if (trend === 'fortyFiveDown') {
+    rotation = 300;
+    levelStyle = {left: '205px', top: '20px'};
+  } else if (trend === 'flat') {
+    rotation = 270;
+    levelStyle = {left: '205px'};
   }
 
   return (
     <div className="blood-glucose-level-container">
       <div className="level-container">
-        <div className="level">{level}</div>
+        <div className="level" style={levelStyle}>{level}</div>
         <img src={downTrend} alt="trend" style={{ transform: `rotate(${rotation}deg)` }} />
       </div>
     </div>

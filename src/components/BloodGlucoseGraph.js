@@ -40,7 +40,6 @@ const BloodGlucoseGraph = ({ onUpdateLastData }) => {
     getDexcomData();
   }, [userId, onUpdateLastData]);
 
-  // Determine the start and end times for the graph
   let startTime, endTime;
   if (dexcomData && dexcomData.length > 0) {
     endTime = new Date(dexcomData[dexcomData.length - 1].displayTime);
@@ -49,13 +48,11 @@ const BloodGlucoseGraph = ({ onUpdateLastData }) => {
     startTime.setHours(startTime.getHours() - 4);
   }
 
-  // Filter the data to only include points within the time range
   const filteredData = dexcomData ? dexcomData.filter(item => {
     const displayTime = new Date(item.displayTime);
     return displayTime >= startTime && displayTime <= endTime;
   }) : [];
 
-  // Format the x-axis labels
   const formatTimeLabel = (value) => {
     const date = new Date(value);
     const hours = date.getHours();

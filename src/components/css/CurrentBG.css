@@ -1,7 +1,7 @@
 .blood-glucose-level-container {
   display: flex;
   align-items: center;
-  margin-bottom: 50px; /* adjust as needed */
+  margin-bottom: 50px;
 }
 
 
@@ -12,16 +12,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-left: 200px;
 }
-
 
 .level {
   position: absolute;
+  color: white;
+  font-size: 36px;
   z-index: 1;
 }
 
 img {
-  width: 100px;
-  height: 100px;
-  transform-origin: center;
+  width: 150px;
+  height: 150px;
 }
