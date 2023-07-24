@@ -9,7 +9,7 @@ const WarningThresholds = () => {
   useEffect(() => {
     const getUserSettings = async () => {
       try {
-        const res = await fetch(`/api/user-settings/getUserSettings/${userId}`);
+        const res = await fetch(`https://protected-badlands-72029.herokuapp.com/getUserSettings/${userId}`);
         const data = await res.json();
         setHighThreshold(data.high_threshold);
         setLowThreshold(data.low_threshold);
@@ -23,7 +23,7 @@ const WarningThresholds = () => {
 
   const handleUpdateUserSettings = async () => {
     try {
-      await fetch(`/api/user-settings/updateUserSettings/${userId}`, {
+      await fetch(`https://protected-badlands-72029.herokuapp.com/updateUserSettings/${userId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
