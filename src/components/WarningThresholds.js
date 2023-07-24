@@ -1,9 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const WarningThresholds = () => {
   const [highThreshold, setHighThreshold] = useState(300);
   const [lowThreshold, setLowThreshold] = useState(60);
+  const userId = useSelector(state => state.user_id);
 
+  useEffect(() => {
+    const getUserSettings = async () => {
+      try {
+        const res = await fetch(`/api/user-settings/getUserSettings/${userId}`);
+        const data = await res.json();
+        setHighThreshold(data.high_threshold);
+        setLowThreshold(data.low_threshold);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getUserSettings();
+  }, [userId]);
+
+  const handleUpdateUserSettings = async () => {
+    try {
+      await fetch(`/api/user-settings/updateUserSettings/${userId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ highThreshold, lowThreshold }),
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div>
@@ -34,6 +64,7 @@ const WarningThresholds = () => {
           <span>mg/dL</span>
         </div>
       </div>
+      <button onClick={handleUpdateUserSettings}>Save</button>
     </div>
   );
 };
