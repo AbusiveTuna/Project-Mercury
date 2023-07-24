@@ -5,12 +5,13 @@ import BloodGlucoseGraph from '../components/BloodGlucoseGraph';
 import CurrentBG from '../components/CurrentBG';
 import './css/Dashboard.css';
 import Settings from '../components/Settings';
+import WarningThresholds from '../components/WarningThresholds';
 
 function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [lastLevel, setLastLevel] = useState(null);
   const [lastTrend, setLastTrend] = useState(null);
-  const [hasDataLoaded, setHasDataLoaded] = useState(false); // new state variable
+  const [hasDataLoaded, setHasDataLoaded] = useState(false);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -44,6 +45,9 @@ function Dashboard() {
             <CurrentBG level={lastLevel} trend={lastTrend} />
           )}
           <BloodGlucoseGraph onUpdateLastData={handleUpdateLastData} />
+          {hasDataLoaded && (
+            <WarningThresholds />
+          )}
         </div>
         
         <div className="button-group">
