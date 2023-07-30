@@ -3,6 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Settings from '../../components/Settings';
 import '@testing-library/jest-dom/extend-expect';
 
+// Mock the DexcomSensorInfo component
+jest.mock('../../components/DexcomSensorInfo', () => () => <div>DexcomSensorInfo</div>);
 
 describe('Settings', () => {
 

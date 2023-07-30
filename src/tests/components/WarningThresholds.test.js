@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import WarningThresholds from '../../WarningThresholds';
+import WarningThresholds from '../../components/WarningThresholds';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('WarningThresholds', () => {
