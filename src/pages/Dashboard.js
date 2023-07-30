@@ -45,23 +45,22 @@ function Dashboard() {
             <CurrentBG level={lastLevel} trend={lastTrend} />
           )}
           <BloodGlucoseGraph onUpdateLastData={handleUpdateLastData} />
+        </div>
+        <div className="warningThresholds-container">
           {hasDataLoaded && (
             <WarningThresholds />
           )}
         </div>
-        
         <div className="button-group">
           {!hasDataLoaded && (
             <div className="button-container">
               <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
             </div>
           )}
-
           <div className="button-container">
             <button onClick={handleHueLink}>Setup Hue Lights</button>
           </div>
         </div>
-
       </div>
     </>
   );
