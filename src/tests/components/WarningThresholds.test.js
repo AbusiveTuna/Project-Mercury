@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 describe('WarningThresholds', () => {
   /* 
   * Test Name: Render high and low threshold inputs
-  * Unit Test ID: CUTX
+  * Unit Test ID: CUT21
   * Description: Tests rendering of high and low threshold inputs
   */
   it('should render high and low threshold inputs', () => {
@@ -19,7 +19,7 @@ describe('WarningThresholds', () => {
 
   /* 
   * Test Name: Update high threshold value
-  * Unit Test ID: CUTX
+  * Unit Test ID: CUT22
   * Description: Tests updating of high threshold value when input is changed
   */
   it('should update high threshold value when input is changed', () => {
@@ -31,7 +31,7 @@ describe('WarningThresholds', () => {
 
   /* 
   * Test Name: Update low threshold value
-  * Unit Test ID: CUTX
+  * Unit Test ID: CUT23
   * Description: Tests updating of low threshold value when input is changed
   */
   it('should update low threshold value when input is changed', () => {
