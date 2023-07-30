@@ -4,13 +4,20 @@ import { useSelector } from 'react-redux';
 function DexcomSensorInfo() {
   const [sensorInfo, setSensorInfo] = useState([]);
   const [message, setMessage] = useState('');
+  const [showComponent, setShowComponent] = useState(true);
   const userId = useSelector((state) => state.user_id);
   const backendUrl = 'https://protected-badlands-72029.herokuapp.com';
 
   useEffect(() => {
     fetch(`${backendUrl}/devices/${userId}`)
       .then(response => response.json())
-      .then(data => setSensorInfo(data))
+      .then(data => {
+        if (data.length > 0) {
+          setSensorInfo(data);
+        } else {
+          setShowComponent(false);
+        }
+      })
       .catch(error => console.error('Error:', error));
   }, [userId]);
 
@@ -21,8 +28,7 @@ function DexcomSensorInfo() {
       })
         .then(response => {
           if (response.status === 200) {
-            setSensorInfo([]);  // Clear sensor info after deletion
-            setMessage('Dexcom Sensor Successfully deleted');
+            setShowComponent(false); // Hide component after deletion
           } else if (response.status === 404) {
             setMessage('Unable to find Sensor to delete');
           }
@@ -30,6 +36,8 @@ function DexcomSensorInfo() {
         .catch(error => console.error('Error:', error));
     }
   };
+
+  if (!showComponent) return null;
 
   return (
     <div>
