@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function DexcomSensorInfo() {
   const [sensorInfo, setSensorInfo] = useState([]);
+  const userId = useSelector((state) => state.user_id);
 
   useEffect(() => {
-    const userId = useSelector((state) => state.user_id);
     const backendUrl = 'https://protected-badlands-72029.herokuapp.com';
 
     fetch(`${backendUrl}/devices/${userId}`)
       .then(response => response.json())
       .then(data => setSensorInfo(data))
       .catch(error => console.error('Error:', error));
-  }, []);
+  }, [userId]); 
 
   return (
     <div>
