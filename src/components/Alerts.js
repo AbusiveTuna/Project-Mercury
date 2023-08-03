@@ -52,7 +52,7 @@ function Alerts({ level, trend, lowThreshold, highThreshold, checkedDevices }) {
 
       flashLights();
     }
-  }, [alert]);
+  }, [alert,checkedDevices, userId]);
 
   const handleAcknowledgeAlert = () => {
     setAcknowledged(true);
