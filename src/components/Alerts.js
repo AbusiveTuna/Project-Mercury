@@ -67,22 +67,12 @@ function Alerts() {
 
   return (
     <div>
-      <WarningThresholds />
-      <HueLightsSettings />
       {alert ? (
         <div>
           <p>Alert: The current blood glucose level is outside the normal range.</p>
-          <CurrentBG />
-          <p>Devices: {checkedDevices.join(', ')}</p>
           <button onClick={handleAcknowledgeAlert}>Acknowledge Alert</button>
         </div>
-      ) : (
-        <div>
-          <p>The current blood glucose level is within the normal range.</p>
-          <CurrentBG />
-          <p>Devices: {checkedDevices.join(', ')}</p>
-        </div>
-      )}
+      ) : null}
     </div>
   );
 }
