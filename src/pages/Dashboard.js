@@ -16,6 +16,8 @@ function Dashboard() {
   const [lastTrend, setLastTrend] = useState(null);
   const [hasDataLoaded, setHasDataLoaded] = useState(false);
   const [hasHueData, setHasHueData] = useState(false);
+  const [lowThreshold, setLowThreshold] = useState(60);
+  const [highThreshold, setHighThreshold] = useState(300);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -74,10 +76,10 @@ function Dashboard() {
         </div>
         <div className="warningThresholds-container">
           {hasDataLoaded && (
-            <WarningThresholds />
+            <WarningThresholds lowThreshold={lowThreshold} setLowThreshold={setLowThreshold} highThreshold={highThreshold} setHighThreshold={setHighThreshold} />
           )}
         </div>
-        <Alerts level={lastLevel} trend={lastTrend} />
+        <Alerts level={lastLevel} trend={lastTrend} lowThreshold={lowThreshold} highThreshold={highThreshold}/>
         <div className="button-group">
           {!hasDataLoaded && (
             <div className="button-container">
@@ -94,5 +96,6 @@ function Dashboard() {
     </>
   );
 }
+
 
 export default Dashboard;
