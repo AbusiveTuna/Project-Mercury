@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import CurrentBG from './CurrentBG';
 import WarningThresholds from './WarningThresholds';
-import { devices } from './HueLightsSettings';
+import HueLightsSettings from './HueLightsSettings';
 
 function Alerts() {
   const [checkedDevices, setCheckedDevices] = useState([]);
@@ -68,6 +68,7 @@ function Alerts() {
   return (
     <div>
       <WarningThresholds />
+      <HueLightsSettings />
       {alert ? (
         <div>
           <p>Alert: The current blood glucose level is outside the normal range.</p>
