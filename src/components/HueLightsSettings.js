@@ -3,6 +3,9 @@ import { BsX } from 'react-icons/bs';
 import './css/HueLightsSettings.css';
 
 function HueLightsSettings({ isSidebarOpen, setSidebarOpen }) {
+
+  const userId = useSelector((state) => state.user_id);
+  
   return (
     <div className={isSidebarOpen ? "sidebar open" : "sidebar"} data-testid="sidebar">
       <BsX className="settings-button close-button" onClick={() => setSidebarOpen(false)} data-testid="close-button" />
