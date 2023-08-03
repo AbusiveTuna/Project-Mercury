@@ -18,6 +18,7 @@ function Dashboard() {
   const [hasHueData, setHasHueData] = useState(false);
   const [lowThreshold, setLowThreshold] = useState(60);
   const [highThreshold, setHighThreshold] = useState(300);
+  const [checkedDevices, setCheckedDevices] = useState([]);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -43,51 +44,72 @@ function Dashboard() {
   }, []);
 
   const handleDexcomLink = () => {
-    navigate("/dexcomLink");
-  }
+    navigate('/dexcomLink');
+  };
 
   const handleHueLink = () => {
-    navigate("/hueLightsLink");
-  }
+    navigate('/hueLightsLink');
+  };
 
   const handleUpdateLastData = (level, trend) => {
     setLastLevel(level);
     setLastTrend(trend);
-  }
+  };
 
   return (
     <>
-      <div className="dashboard">
+      <div className='dashboard'>
         {!isSidebarOpen && !isHueSidebarOpen && (
           <>
-            <BsGearFill className="settings-button" data-testid="settings-button" onClick={() => setSidebarOpen(true)} />
+            <BsGearFill
+              className='settings-button'
+              data-testid='settings-button'
+              onClick={() => setSidebarOpen(true)}
+            />
             {hasHueData && (
-              <BsLightningFill className="hue-settings-button" onClick={() => setHueSidebarOpen(true)} />
+              <BsLightningFill
+                className='hue-settings-button'
+                onClick={() => setHueSidebarOpen(true)}
+              />
             )}
           </>
         )}
         <Settings isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <HueLightsSettings isSidebarOpen={isHueSidebarOpen} setSidebarOpen={setHueSidebarOpen} />
-        <div className="graph-container">
-          {hasDataLoaded && (
-            <CurrentBG level={lastLevel} trend={lastTrend} />
-          )}
+        <HueLightsSettings
+          isSidebarOpen={isHueSidebarOpen}
+          setSidebarOpen={setHueSidebarOpen}
+          checkedDevices={checkedDevices}
+          setCheckedDevices={setCheckedDevices}
+        />
+        <div className='graph-container'>
+          {hasDataLoaded && <CurrentBG level={lastLevel} trend={lastTrend} />}
           <BloodGlucoseGraph onUpdateLastData={handleUpdateLastData} />
         </div>
-        <div className="warningThresholds-container">
+        <div className='warningThresholds-container'>
           {hasDataLoaded && (
-            <WarningThresholds lowThreshold={lowThreshold} setLowThreshold={setLowThreshold} highThreshold={highThreshold} setHighThreshold={setHighThreshold} />
+            <WarningThresholds
+              lowThreshold={lowThreshold}
+              setLowThreshold={setLowThreshold}
+              highThreshold={highThreshold}
+              setHighThreshold={setHighThreshold}
+            />
           )}
         </div>
-        <Alerts level={lastLevel} trend={lastTrend} lowThreshold={lowThreshold} highThreshold={highThreshold}/>
-        <div className="button-group">
+        <Alerts
+          level={lastLevel}
+          trend={lastTrend}
+          lowThreshold={lowThreshold}
+          highThreshold={highThreshold}
+          checkedDevices={checkedDevices}
+        />
+        <div className='button-group'>
           {!hasDataLoaded && (
-            <div className="button-container">
+            <div className='button-container'>
               <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
             </div>
           )}
           {!hasHueData && (
-            <div className="button-container">
+            <div className='button-container'>
               <button onClick={handleHueLink}>Setup Hue Lights</button>
             </div>
           )}
@@ -96,6 +118,5 @@ function Dashboard() {
     </>
   );
 }
-
 
 export default Dashboard;
