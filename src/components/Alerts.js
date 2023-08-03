@@ -6,6 +6,7 @@ import { devices } from './HueLightsSettings';
 function Alerts() {
   const [checkedDevices, setCheckedDevices] = useState([]);
   const [alert, setAlert] = useState(false);
+  const userId = useSelector((state) => state.user_id);
 
   useEffect(() => {
     if (level < lowThreshold || level > highThreshold) {
