@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { highThreshold, lowThreshold } from './WarningThresholds';
-import { level, trend } from './CurrentBG';
+import CurrentBG from './CurrentBG';
 import { devices } from './HueLightsSettings';
 
 function Alerts() {
@@ -70,16 +70,14 @@ function Alerts() {
       {alert ? (
         <div>
           <p>Alert: The current blood glucose level is outside the normal range.</p>
-          <p>Level: {level}</p>
-          <p>Trend: {trend}</p>
+          <CurrentBG />
           <p>Devices: {checkedDevices.join(', ')}</p>
           <button onClick={handleAcknowledgeAlert}>Acknowledge Alert</button>
         </div>
       ) : (
         <div>
           <p>The current blood glucose level is within the normal range.</p>
-          <p>Level: {level}</p>
-          <p>Trend: {trend}</p>
+          <CurrentBG />
           <p>Devices: {checkedDevices.join(', ')}</p>
         </div>
       )}
