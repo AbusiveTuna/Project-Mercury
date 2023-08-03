@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { highThreshold, lowThreshold } from './WarningThresholds';
 import { level, trend } from './CurrentBG';
 import { devices } from './HueLightsSettings';
@@ -6,15 +7,18 @@ import { devices } from './HueLightsSettings';
 function Alerts() {
   const [checkedDevices, setCheckedDevices] = useState([]);
   const [alert, setAlert] = useState(false);
+  const [acknowledged, setAcknowledged] = useState(false);
   const userId = useSelector((state) => state.user_id);
 
   useEffect(() => {
     if (level < lowThreshold || level > highThreshold) {
-      setAlert(true);
+      if (!acknowledged) {
+        setAlert(true);
+      }
     } else {
       setAlert(false);
     }
-  }, [level, lowThreshold, highThreshold]);
+  }, [level, lowThreshold, highThreshold, acknowledged]);
 
   useEffect(() => {
     if (alert) {
@@ -38,10 +42,8 @@ function Alerts() {
             body: JSON.stringify({ user_id: userId, lightname: device, on: false }),
           });
 
-          // Wait for 3 seconds
           await new Promise(resolve => setTimeout(resolve, 3000));
 
-          // Turn light on again
           await fetch('https://protected-badlands-72029.herokuapp.com/toggleHueLight', {
             method: 'POST',
             headers: {
@@ -56,6 +58,13 @@ function Alerts() {
     }
   }, [alert]);
 
+  const handleAcknowledgeAlert = () => {
+    setAcknowledged(true);
+    setTimeout(() => {
+      setAcknowledged(false);
+    }, 600000); 
+  };
+
   return (
     <div>
       {alert ? (
@@ -64,6 +73,7 @@ function Alerts() {
           <p>Level: {level}</p>
           <p>Trend: {trend}</p>
           <p>Devices: {checkedDevices.join(', ')}</p>
+          <button onClick={handleAcknowledgeAlert}>Acknowledge Alert</button>
         </div>
       ) : (
         <div>
