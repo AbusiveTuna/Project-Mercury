@@ -7,6 +7,7 @@ import './css/Dashboard.css';
 import Settings from '../components/Settings';
 import WarningThresholds from '../components/WarningThresholds';
 import HueLightsSettings from '../components/HueLightsSettings';
+import Alerts from '../components/Alerts';
 
 function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -76,6 +77,7 @@ function Dashboard() {
             <WarningThresholds />
           )}
         </div>
+        <Alerts />
         <div className="button-group">
           {!hasDataLoaded && (
             <div className="button-container">
