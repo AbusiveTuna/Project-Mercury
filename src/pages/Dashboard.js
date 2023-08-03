@@ -77,7 +77,7 @@ function Dashboard() {
             <WarningThresholds />
           )}
         </div>
-        <Alerts />
+        <Alerts level={lastLevel} trend={lastTrend} />
         <div className="button-group">
           {!hasDataLoaded && (
             <div className="button-container">
