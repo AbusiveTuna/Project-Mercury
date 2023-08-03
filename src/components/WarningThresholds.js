@@ -62,6 +62,4 @@ const WarningThresholds = () => {
   );
 };
 
-export { highThreshold, lowThreshold };
-
 export default WarningThresholds;
