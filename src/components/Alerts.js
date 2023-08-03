@@ -4,7 +4,7 @@ import CurrentBG from './CurrentBG';
 import WarningThresholds from './WarningThresholds';
 import HueLightsSettings from './HueLightsSettings';
 
-function Alerts() {
+function Alerts({ level, trend }) {
   const [checkedDevices, setCheckedDevices] = useState([]);
   const [alert, setAlert] = useState(false);
   const [acknowledged, setAcknowledged] = useState(false);
