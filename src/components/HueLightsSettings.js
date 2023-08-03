@@ -71,6 +71,4 @@ const handleToggleAlert = (index) => {
   );
 }
 
-export { devices };
-
 export default HueLightsSettings;
