@@ -9,6 +9,7 @@ import WarningThresholds from '../components/WarningThresholds';
 import HueLightsSettings from '../components/HueLightsSettings';
 import Alerts from '../components/Alerts';
 import Clock from '../components/Clock';
+import { smartAlert } from '../utils/SmartAlert';
 
 function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -20,6 +21,7 @@ function Dashboard() {
   const [lowThreshold, setLowThreshold] = useState(60);
   const [highThreshold, setHighThreshold] = useState(300);
   const [checkedDevices, setCheckedDevices] = useState([]);
+  const [currentTime, setCurrentTime] = useState(new Date());
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -44,6 +46,10 @@ function Dashboard() {
     fetchHueDevices();
   }, []);
 
+  useEffect(() => {
+    smartAlert(lastLevel, lastTrend, lowThreshold, highThreshold, checkedDevices, currentTime);
+  }, [lastLevel, lastTrend, lowThreshold, highThreshold, checkedDevices, currentTime]);
+
   const handleDexcomLink = () => {
     navigate('/dexcomLink');
   };
@@ -60,7 +66,7 @@ function Dashboard() {
   return (
     <>
       <div className='dashboard'>
-    <Clock />
+        <Clock setCurrentTime={setCurrentTime} />
         {!isSidebarOpen && !isHueSidebarOpen && (
           <>
             <BsGearFill
