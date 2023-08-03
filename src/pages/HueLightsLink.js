@@ -1,13 +1,32 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './css/HueLightsLink.css';
 
 function HueLightsLink() {
   const [ipAddress, setIpAddress] = useState('');
+  const navigate = useNavigate();
+  const user_id = useSelector((state) => state.user_id);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    //send IP backend
-    //Get auth, add to state? redirect to dashboard.
+    try {
+      const response = await fetch('https://protected-badlands-72029.herokuapp.com/hueAuth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ipAddress, user_id }),
+      });
+      const data = await response.json();
+      if (response.status === 400) {
+        alert(data.message);
+      } else {
+        alert(data.message);
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
