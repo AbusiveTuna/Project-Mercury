@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { BsGearFill } from 'react-icons/bs';
+import { BsGearFill, BsLightningFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import BloodGlucoseGraph from '../components/BloodGlucoseGraph';
 import CurrentBG from '../components/CurrentBG';
 import './css/Dashboard.css';
 import Settings from '../components/Settings';
 import WarningThresholds from '../components/WarningThresholds';
+import HueLightsSettings from '../components/HueLightsSettings';
 
 function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isHueSidebarOpen, setHueSidebarOpen] = useState(false);
   const [lastLevel, setLastLevel] = useState(null);
   const [lastTrend, setLastTrend] = useState(null);
   const [hasDataLoaded, setHasDataLoaded] = useState(false);
@@ -53,8 +55,16 @@ function Dashboard() {
   return (
     <>
       <div className="dashboard">
-        {!isSidebarOpen && <BsGearFill className="settings-button" data-testid="settings-button" onClick={() => setSidebarOpen(true)} />}
+        {!isSidebarOpen && !isHueSidebarOpen && (
+          <>
+            <BsGearFill className="settings-button" data-testid="settings-button" onClick={() => setSidebarOpen(true)} />
+            {hasHueData && (
+              <BsLightningFill className="hue-settings-button" onClick={() => setHueSidebarOpen(true)} />
+            )}
+          </>
+        )}
         <Settings isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <HueLightsSettings isSidebarOpen={isHueSidebarOpen} setSidebarOpen={setHueSidebarOpen} />
         <div className="graph-container">
           {hasDataLoaded && (
             <CurrentBG level={lastLevel} trend={lastTrend} />
