@@ -12,6 +12,7 @@ function Dashboard() {
   const [lastLevel, setLastLevel] = useState(null);
   const [lastTrend, setLastTrend] = useState(null);
   const [hasDataLoaded, setHasDataLoaded] = useState(false);
+  const [hasHueData, setHasHueData] = useState(false);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -21,6 +22,20 @@ function Dashboard() {
       setHasDataLoaded(false);
     }
   }, [lastLevel, lastTrend]);
+
+  useEffect(() => {
+    const fetchHueDevices = async () => {
+      try {
+        const response = await fetch('https://protected-badlands-72029.herokuapp.com/getHueDevices');
+        if (response.status === 200) {
+          setHasHueData(true);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchHueDevices();
+  }, []);
 
   const handleDexcomLink = () => {
     navigate("/dexcomLink");
@@ -57,9 +72,11 @@ function Dashboard() {
               <button onClick={handleDexcomLink}>Setup Dexcom Sensor</button>
             </div>
           )}
-          <div className="button-container">
-            <button onClick={handleHueLink}>Setup Hue Lights</button>
-          </div>
+          {!hasHueData && (
+            <div className="button-container">
+              <button onClick={handleHueLink}>Setup Hue Lights</button>
+            </div>
+          )}
         </div>
       </div>
     </>
