@@ -1,0 +1,28 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, .2);
+  overflow: hidden;
+  transition: transform 0.5s ease;
+  transform: translateX(100%);
+}
+
+.sidebar-content {
+  padding: 20px;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.close-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+}
