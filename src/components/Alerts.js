@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import CurrentBG from './CurrentBG';
-import WarningThresholds from './WarningThresholds';
-import HueLightsSettings from './HueLightsSettings';
 
-function Alerts({ level, trend ,lowThreshold, highThreshold}) {
-  const [checkedDevices, setCheckedDevices] = useState([]);
+function Alerts({ level, trend, lowThreshold, highThreshold, checkedDevices }) {
   const [alert, setAlert] = useState(false);
   const [acknowledged, setAcknowledged] = useState(false);
   const userId = useSelector((state) => state.user_id);
@@ -32,7 +28,7 @@ function Alerts({ level, trend ,lowThreshold, highThreshold}) {
             body: JSON.stringify({ user_id: userId, lightname: device, on: true }),
           });
 
-          await new Promise(resolve => setTimeout(resolve, 30000));
+          await new Promise((resolve) => setTimeout(resolve, 30000));
 
           await fetch('https://protected-badlands-72029.herokuapp.com/toggleHueLight', {
             method: 'POST',
@@ -42,7 +38,7 @@ function Alerts({ level, trend ,lowThreshold, highThreshold}) {
             body: JSON.stringify({ user_id: userId, lightname: device, on: false }),
           });
 
-          await new Promise(resolve => setTimeout(resolve, 3000));
+          await new Promise((resolve) => setTimeout(resolve, 3000));
 
           await fetch('https://protected-badlands-72029.herokuapp.com/toggleHueLight', {
             method: 'POST',
@@ -62,7 +58,7 @@ function Alerts({ level, trend ,lowThreshold, highThreshold}) {
     setAcknowledged(true);
     setTimeout(() => {
       setAcknowledged(false);
-    }, 600000); 
+    }, 600000);
   };
 
   return (
