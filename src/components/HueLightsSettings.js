@@ -38,11 +38,17 @@ function HueLightsSettings({ isSidebarOpen, setSidebarOpen }) {
     }
   };
 
-  const handleToggleAlert = (index) => {
-    const newAlerts = [...alerts];
-    newAlerts[index] = !newAlerts[index];
-    setAlerts(newAlerts);
-  };
+const handleToggleAlert = (index) => {
+  const newAlerts = [...alerts];
+  newAlerts[index] = !newAlerts[index];
+  setAlerts(newAlerts);
+  
+  if (newAlerts[index]) {
+    setCheckedDevices(prevState => [...prevState, devices[index]]);
+  } else {
+    setCheckedDevices(prevState => prevState.filter(device => device !== devices[index]));
+  }
+};
 
   return (
     <div className={isSidebarOpen ? "sidebar open" : "sidebar"} data-testid="sidebar">
@@ -64,5 +70,7 @@ function HueLightsSettings({ isSidebarOpen, setSidebarOpen }) {
     </div>
   );
 }
+
+export { devices };
 
 export default HueLightsSettings;
