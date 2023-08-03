@@ -1,6 +1,6 @@
 import React from 'react';
 import { BsX } from 'react-icons/bs';
-import './css/Settings.css';
+import './css/HueLightsSettings.css';
 
 function HueLightsSettings({ isSidebarOpen, setSidebarOpen }) {
   return (
