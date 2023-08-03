@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 function HueLightsSettings({ isSidebarOpen, setSidebarOpen, checkedDevices, setCheckedDevices }) {
   const [devices, setDevices] = useState([]);
   const [alerts, setAlerts] = useState([]);
+  const [deviceOn, setDeviceOn] = useState([]);
   const userId = useSelector((state) => state.user_id);
 
   useEffect(() => {
@@ -17,6 +18,7 @@ function HueLightsSettings({ isSidebarOpen, setSidebarOpen, checkedDevices, setC
           const data = await response.json();
           setDevices(data);
           setAlerts(new Array(data.length).fill(false));
+          setDeviceOn(new Array(data.length).fill(false));
         }
       } catch (err) {
         console.error(err);
@@ -25,14 +27,18 @@ function HueLightsSettings({ isSidebarOpen, setSidebarOpen, checkedDevices, setC
     fetchHueDevices();
   }, []);
 
-  const handleToggleLight = async (lightname, on) => {
+  const handleToggleLight = async (index) => {
     try {
+      const newDeviceOn = [...deviceOn];
+      newDeviceOn[index] = !newDeviceOn[index];
+      setDeviceOn(newDeviceOn);
+
       await fetch('https://protected-badlands-72029.herokuapp.com/toggleHueLight', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ user_id: userId, lightname, on }),
+        body: JSON.stringify({ user_id: userId, lightname: devices[index], on: newDeviceOn[index] }),
       });
     } catch (err) {
       console.error(err);
@@ -74,6 +80,14 @@ function HueLightsSettings({ isSidebarOpen, setSidebarOpen, checkedDevices, setC
                 <span className='slider round'></span>
               </label>
               {device}
+              <label className='switch'>
+                <input
+                  type='checkbox'
+                  checked={deviceOn[index]}
+                  onChange={() => handleToggleLight(index)}
+                />
+                <span className='slider round'></span>
+              </label>
             </li>
           ))}
         </ul>
