@@ -20,8 +20,7 @@ function Alerts() {
     if (alert) {
       const flashLights = async () => {
         for (const device of checkedDevices) {
-          // Turn light on
-          await fetch('/toggleHueLight', {
+          await fetch('https://protected-badlands-72029.herokuapp.com/toggleHueLight', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -31,7 +30,7 @@ function Alerts() {
 
           await new Promise(resolve => setTimeout(resolve, 30000));
 
-          await fetch('/toggleHueLight', {
+          await fetch('https://protected-badlands-72029.herokuapp.com/toggleHueLight', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -43,7 +42,7 @@ function Alerts() {
           await new Promise(resolve => setTimeout(resolve, 3000));
 
           // Turn light on again
-          await fetch('/toggleHueLight', {
+          await fetch('https://protected-badlands-72029.herokuapp.com/toggleHueLight', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
