@@ -8,6 +8,7 @@ import Settings from '../components/Settings';
 import WarningThresholds from '../components/WarningThresholds';
 import HueLightsSettings from '../components/HueLightsSettings';
 import Alerts from '../components/Alerts';
+import Clock from '../components/Clock';
 
 function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -59,6 +60,7 @@ function Dashboard() {
   return (
     <>
       <div className='dashboard'>
+    <Clock />
         {!isSidebarOpen && !isHueSidebarOpen && (
           <>
             <BsGearFill
