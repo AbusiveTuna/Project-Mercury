@@ -32,6 +32,4 @@ const CurrentBG = ({ level, trend }) => {
   );
 };
 
-export { level, trend };
-
 export default CurrentBG;
