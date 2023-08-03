@@ -14,7 +14,7 @@ function Alerts() {
     } else {
       setAlert(false);
     }
-  }, [level]);
+  }, [level, lowThreshold, highThreshold]);
 
   useEffect(() => {
     if (alert) {
