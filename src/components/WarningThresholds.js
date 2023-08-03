@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './css/WarningThresholds.css';
 
-const WarningThresholds = () => {
+const WarningThresholds = ({ lowThreshold, setLowThreshold, highThreshold, setHighThreshold }) => {
   const [highThreshold, setHighThreshold] = useState(300);
   const [lowThreshold, setLowThreshold] = useState(60);
   const userId = useSelector(state => state.user_id);
