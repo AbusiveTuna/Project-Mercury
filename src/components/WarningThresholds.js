@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './css/WarningThresholds.css';
 
@@ -18,7 +18,7 @@ const WarningThresholds = ({ lowThreshold, setLowThreshold, highThreshold, setHi
     };
 
     getUserSettings();
-  }, [userId]);
+  }, [userId, setHighThreshold, setLowThreshold]);
 
   const handleUpdateUserSettings = async () => {
     try {
