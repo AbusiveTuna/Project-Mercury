@@ -38,17 +38,27 @@ function Dashboard() {
   useEffect(() => {
     const fetchHueDevices = async () => {
       try {
-        const response = await fetch('https://protected-badlands-72029.herokuapp.com/getHueDevices/' + userId);
-
-        if (response.status === 200) {
-          setHasHueData(true);
-        }
+        // Fetch the Hue devices from your backend
+        const devicesResponse = await fetch('https://protected-badlands-72029.herokuapp.com/getHueDevices/' + userId);
+        const devices = await devicesResponse.json();
+        console.log(devices);
+        await fetch('https://protected-badlands-72029.herokuapp.com/updateHueDevices/' + userId, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(devices),
+        });
+  
+        setHasHueData(true);
       } catch (err) {
         console.error(err);
       }
     };
     fetchHueDevices();
-  }, []);
+  }, [userId, setHasHueData]);
+  
+
 
   useEffect(() => {
     SmartAlert(lastLevel, lastTrend, lowThreshold, highThreshold, checkedDevices, currentTime);
