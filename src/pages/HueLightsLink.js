@@ -11,24 +11,47 @@ function HueLightsLink() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('https://protected-badlands-72029.herokuapp.com/hueAuth', {
+      const url = `http://${ipAddress}/api`;
+      const body = {
+        devicetype: 'projectmercury#webportal',
+        generateclientkey: true,
+      };
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ipAddress, user_id }),
+        body: JSON.stringify(body),
       });
       const data = await response.json();
-      if (response.status === 400) {
-        alert(data.message);
+      if (data[0].error && data[0].error.type === 101) {
+        alert('Link Button not pressed on bridge');
       } else {
-        alert(data.message);
-        navigate("/dashboard");
+
+        const username = data[0].success.username;
+        const clientkey = data[0].success.clientkey;
+        try {
+          const response = await fetch('https://protected-badlands-72029.herokuapp.com/hueAuth', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ ipAddress, user_id, username, clientkey }),
+          });
+          const data = await response.json();
+          console.log(data);
+          alert('Authenticated successfully');
+          navigate("/dashboard");
+        } catch (err) {
+          console.error(err); 
+        }
+
       }
     } catch (err) {
       console.error(err);
     }
   };
+  
 
   return (
     <div className="hue-lights-container">
