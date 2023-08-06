@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 function getTimeouts(smartAlertValue) {
+  if(smartAlertValue > 5){
+    smartAlertValue = 5;
+  }
+  if(smartAlertValue < 1){
+    smartAlertValue = 1;
+  }
+  smartAlertValue = 5;
   switch (smartAlertValue) {
     case 1:
       return { longTimeout: 50000, shortTimeout: 1000 };
