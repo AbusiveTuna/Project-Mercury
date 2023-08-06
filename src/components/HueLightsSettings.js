@@ -27,7 +27,7 @@ function HueLightsSettings({ isHueSidebarOpen, setHueSidebarOpen, checkedDevices
       }
     };
     fetchHueDevices();
-  }, []);
+  }, [userId]);
 
   const handleToggleLight = async (index) => {
     try {
