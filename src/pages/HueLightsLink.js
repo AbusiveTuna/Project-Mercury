@@ -11,7 +11,7 @@ function HueLightsLink() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const url = `http://${ipAddress}/api`;
+      const url = `https://${ipAddress}/api`;
       const body = {
         devicetype: 'projectmercury#webportal',
         generateclientkey: true,

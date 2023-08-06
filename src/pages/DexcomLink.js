@@ -30,7 +30,7 @@ function DexcomLink() {
   return (
     <div className="container">
       <h1>Link your Dexcom account</h1>
-      <p>Click the button below to login to your Dexcom Account. On Successful Login you will be redirected to something something</p>
+      <p>Click the button below to login to your Dexcom Account. On Successful Login you will be redirected to the Dashboard</p>
       <button onClick={handleLinkDexcom}>Link Dexcom</button>
     </div>
 );
