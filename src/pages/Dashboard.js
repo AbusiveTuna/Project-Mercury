@@ -23,6 +23,8 @@ function Dashboard() {
   const [highThreshold, setHighThreshold] = useState(300);
   const [checkedDevices, setCheckedDevices] = useState([]);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [smartAlertValue, setSmartAlertValue] = useState(null);
+
   const userId = useSelector(state => state.user_id);
 
   let navigate = useNavigate();
@@ -38,18 +40,48 @@ function Dashboard() {
   useEffect(() => {
     const fetchHueDevices = async () => {
       try {
-        // Fetch the Hue devices from your backend
-        const devicesResponse = await fetch('https://protected-badlands-72029.herokuapp.com/getHueDevices/' + userId);
-        const devices = await devicesResponse.json();
-        console.log(devices);
-        await fetch('https://protected-badlands-72029.herokuapp.com/updateHueDevices/' + userId, {
-          method: 'POST',
+        const credentialsResponse = await fetch(`https://protected-badlands-72029.herokuapp.com/getHueCredentials/${userId}`);
+        const { ip_address, username } = await credentialsResponse.json();
+
+        const url = `https://${ip_address}/api/${username}/lights`;
+
+        const response = await fetch(url, {
+          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(devices),
         });
-  
+        if (!response.ok) {
+          throw new Error('Request failed with status ' + response.status);
+        }
+        const data = await response.json();
+
+        // Define storeHueDataInBackend inside the useEffect hook
+        const storeHueDataInBackend = async (data) => {
+          try {
+            const response = await fetch('https://protected-badlands-72029.herokuapp.com/storeHueData', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                userId,
+                hueData: data,
+              }),
+            });
+
+            if (!response.ok) {
+              throw new Error('Request failed with status ' + response.status);
+            }
+
+            console.log('Data stored successfully');
+          } catch (err) {
+            console.error(err);
+          }
+        };
+
+        storeHueDataInBackend(data);
+
         setHasHueData(true);
       } catch (err) {
         console.error(err);
@@ -57,11 +89,11 @@ function Dashboard() {
     };
     fetchHueDevices();
   }, [userId, setHasHueData]);
-  
 
 
   useEffect(() => {
-    SmartAlert(lastLevel, lastTrend, lowThreshold, highThreshold, checkedDevices, currentTime);
+    const value = SmartAlert(lastLevel, lastTrend, lowThreshold, highThreshold, checkedDevices, currentTime);
+    setSmartAlertValue(value);
   }, [lastLevel, lastTrend, lowThreshold, highThreshold, checkedDevices, currentTime]);
 
   const handleDexcomLink = () => {
@@ -80,44 +112,48 @@ function Dashboard() {
   return (
     <>
       <div className='dashboard'>
-        <Clock setCurrentTime={setCurrentTime} />
-        {!isSidebarOpen && !isHueSidebarOpen && (
-          <>
+        <div className='clock'>
+          <Clock setCurrentTime={setCurrentTime} />
+        </div>
+        <div className='header'>
+          {!isSidebarOpen && (
             <BsGearFill
               className='settings-button'
               data-testid='settings-button'
               onClick={() => setSidebarOpen(true)}
             />
-            {hasHueData && (
-              <BsLightningFill
-                className='hue-settings-button'
-                onClick={() => setHueSidebarOpen(true)}
-              />
-            )}
-          </>
-        )}
-        <Settings isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
-        {hasHueData && (
-          <HueLightsSettings
-            isSidebarOpen={isHueSidebarOpen}
-            setSidebarOpen={setHueSidebarOpen}
-            checkedDevices={checkedDevices}
-            setCheckedDevices={setCheckedDevices}
-          />
-        )}
-        <div className='graph-container'>
-          {hasDataLoaded && <CurrentBG level={lastLevel} trend={lastTrend} />}
-          <BloodGlucoseGraph onUpdateLastData={handleUpdateLastData} />
-        </div>
-        <div className='warningThresholds-container'>
-          {hasDataLoaded && (
-            <WarningThresholds
-              lowThreshold={lowThreshold}
-              setLowThreshold={setLowThreshold}
-              highThreshold={highThreshold}
-              setHighThreshold={setHighThreshold}
+          )}
+          {hasHueData && !isHueSidebarOpen && (
+            <BsLightningFill
+              className='hue-settings-button'
+              onClick={() => setHueSidebarOpen(true)}
             />
           )}
+        </div>
+        <div className='main-content'>
+          <Settings isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
+          {hasHueData && (
+            <HueLightsSettings
+              isHueSidebarOpen={isHueSidebarOpen}
+              setHueSidebarOpen={setHueSidebarOpen}
+              checkedDevices={checkedDevices}
+              setCheckedDevices={setCheckedDevices}
+            />
+          )}
+          <div className='graph-container'>
+            {hasDataLoaded && <CurrentBG level={lastLevel} trend={lastTrend} />}
+            <BloodGlucoseGraph onUpdateLastData={handleUpdateLastData} />
+          </div>
+          <div className='warningThresholds-container'>
+            {hasDataLoaded && (
+              <WarningThresholds
+                lowThreshold={lowThreshold}
+                setLowThreshold={setLowThreshold}
+                highThreshold={highThreshold}
+                setHighThreshold={setHighThreshold}
+              />
+            )}
+          </div>
         </div>
         <Alerts
           level={lastLevel}
@@ -125,6 +161,7 @@ function Dashboard() {
           lowThreshold={lowThreshold}
           highThreshold={highThreshold}
           checkedDevices={checkedDevices}
+          smartAlertValue={smartAlertValue}
         />
         <div className='button-group'>
           {!hasDataLoaded && (

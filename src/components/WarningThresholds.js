@@ -33,31 +33,34 @@ const WarningThresholds = ({ lowThreshold, setLowThreshold, highThreshold, setHi
       console.error(err);
     }
   };
-
-  return (
-    <div className="warningThresholdsContainer">
-      <h2>Warning Thresholds</h2>
-      <div className="thresholdContainer">
-        <label>High Threshold:</label>
-        <input
-          type="number"
-          value={highThreshold}
-          onChange={e => setHighThreshold(e.target.value)}
-        />
-        <span>mg/dL</span>
-      </div>
-      <div className="thresholdContainer">
-        <label>Low Threshold:</label>
-        <input
-          type="number"
-          value={lowThreshold}
-          onChange={e => setLowThreshold(e.target.value)}
-        />
-        <span>mg/dL</span>
-      </div>
-      <button className="saveButton" onClick={handleUpdateUserSettings}>Save</button>
+  
+return (
+  <div className="warningThresholdsContainer">
+    <h2>Warning Thresholds</h2>
+    <div className="thresholdContainer">
+      <label htmlFor="highThreshold">High Threshold:</label>
+      <input
+        id="highThreshold"
+        type="number"
+        value={highThreshold}
+        onChange={e => setHighThreshold(e.target.value)}
+      />
+      <span>mg/dL</span>
     </div>
-  );
+    <div className="thresholdContainer">
+      <label htmlFor="lowThreshold">Low Threshold:</label>
+      <input
+        id="lowThreshold"
+        type="number"
+        value={lowThreshold}
+        onChange={e => setLowThreshold(e.target.value)}
+      />
+      <span>mg/dL</span>
+    </div>
+    <button className="saveButton" onClick={handleUpdateUserSettings}>Save</button>
+  </div>
+);
+
 };
 
 export default WarningThresholds;

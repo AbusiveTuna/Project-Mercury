@@ -1,7 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-function Alerts({ level, trend, lowThreshold, highThreshold, checkedDevices }) {
+function getTimeouts(smartAlertValue) {
+  switch (smartAlertValue) {
+    case 1:
+      return { longTimeout: 50000, shortTimeout: 1000 };
+    case 2:
+      return { longTimeout: 30000, shortTimeout: 3000 };
+    case 3:
+      return { longTimeout: 20000, shortTimeout: 4000 };
+    case 4:
+      return { longTimeout: 10000, shortTimeout: 5000 };
+    case 5:
+      return { longTimeout: 5000, shortTimeout: 1000 };
+    default:
+      return { longTimeout: 30000, shortTimeout: 3000 };
+  }
+}
+
+function Alerts({ level, trend, lowThreshold, highThreshold, checkedDevices, smartAlertValue  }) {
   const [alert, setAlert] = useState(false);
   const [acknowledged, setAcknowledged] = useState(false);
   const userId = useSelector((state) => state.user_id);
@@ -17,49 +34,72 @@ function Alerts({ level, trend, lowThreshold, highThreshold, checkedDevices }) {
   }, [level, lowThreshold, highThreshold, acknowledged]);
 
   useEffect(() => {
+    let timeoutId;
+
+    const flashLights = async () => {
+      if (!alert) return; // Stop if alert is false
+
+      const { longTimeout, shortTimeout } = getTimeouts(smartAlertValue);
+
+      const credentialsResponse = await fetch(`https://protected-badlands-72029.herokuapp.com/getHueCredentials/${userId}`);
+      const { ip_address, username } = await credentialsResponse.json();
+
+      for (const device of checkedDevices) {
+        const toggleUrl = `https://${ip_address}/api/${username}/lights/${device.lightId}/state`;
+
+        await fetch(toggleUrl, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ on: true }),
+        });
+
+        await new Promise((resolve) => setTimeout(resolve, longTimeout));
+
+        await fetch(toggleUrl, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ on: false }),
+        });
+
+        await new Promise((resolve) => setTimeout(resolve, shortTimeout));
+
+        await fetch(toggleUrl, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ on: true }),
+        });
+      }
+
+      // Schedule the next call
+      timeoutId = setTimeout(flashLights, 0);
+    };
+
     if (alert) {
-      const flashLights = async () => {
-        for (const device of checkedDevices) {
-          await fetch('https://protected-badlands-72029.herokuapp.com/toggleHueLight', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ user_id: userId, lightname: device, on: true }),
-          });
-
-          await new Promise((resolve) => setTimeout(resolve, 30000));
-
-          await fetch('https://protected-badlands-72029.herokuapp.com/toggleHueLight', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ user_id: userId, lightname: device, on: false }),
-          });
-
-          await new Promise((resolve) => setTimeout(resolve, 3000));
-
-          await fetch('https://protected-badlands-72029.herokuapp.com/toggleHueLight', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ user_id: userId, lightname: device, on: true }),
-          });
-        }
-      };
-
-      flashLights();
+      flashLights(); // Start the flashing
     }
-  }, [alert,checkedDevices, userId]);
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId); // Clear the timeout when the component is unmounted or alert becomes false
+      }
+    };
+  }, [alert, checkedDevices, userId, smartAlertValue]);
+
 
   const handleAcknowledgeAlert = () => {
+    setAlert(false);
     setAcknowledged(true);
     setTimeout(() => {
       setAcknowledged(false);
     }, 600000);
   };
+  
 
   return (
     <div>

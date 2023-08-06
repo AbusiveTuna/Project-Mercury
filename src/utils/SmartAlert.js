@@ -1,7 +1,7 @@
 function glucoseStatus(bloodSugar, lowThreshold, highThreshold) {
   if (bloodSugar <= lowThreshold) {
     return 'low';
-  } else if (bloodSugar => highThreshold) {
+ } else if (bloodSugar >= highThreshold) {
     return 'high';
   } else {
     return 'normal';
@@ -103,73 +103,10 @@ export const SmartAlert = (lastLevel, lastTrend, lowThreshold, highThreshold, ch
     return totalFactor;
 };
 
-
-// timeSeverity = 0 or 1
-
-
-
-// Best way to picture Smart Alert's effiectiveness is with use cases.
-
-// For our use cases lets say the user's threholds are 
-// Low: 70
-// High: 300
-
-
-// What would an extreme worse case scenario be?
-
-// What would a extreme (5) case be?
-// The user is 40 blood sugar, with an extreme down trend. The user is asleep
-
-// timeFactor = 1;
-// glucoseFactor = 4;
-// trendFactor = 3;
-
-// This user is in danager of diabetic shock and requires an extreme warning.
-// Even if it was daytime, and the user had a single down arrow, the warning is still extreme.
-
-// The user is 20 below their current warning level and going down, this requires a severe warning.
-
-
-// (4)
-// The user is 50 blood sugar, with a slight down trend. The user is asleep
-
-// timeFactor = 1;
-// glucoseFactor = 2;
-// trendFactor = 1;
-
-// The user is 20 below their current warning level and going down, this requires a severe warning.
-
-
-// (3) Moderate
-// The user is 50 blood sugar, with a slight down trend. It is daytime
-
-// timeFactor = 0;
-// glucoseFactor = 2;
-// trendFactor = 1;
-
-// The user is 20 below their current warning level and going down, this requires a moderate warning.
-
-
-
-// (2) 
-// The user is 60 blood sugar, with a slight down trend. It is daytime
-
-// timeFactor = 0;
-// glucoseFactor = 1;
-// trendFactor = 1;
-
-// The user is only 10 under their warning, but also is continuing to trend downwards, this requires 
-// a warning.
-
-// (1) Low 
-// The user is 60 blood sugar, with a flat trend. It is daytime
-
-// timeFactor = 0;
-// glucoseFactor = 1;
-// trendFactor = 0;
-
-// The user is only 10 under their warning, but is staying steady in blood sugar levels.
-// The user should be alerted to this situation, but it is not urgent in any capacity. 
-
-
-
+export {
+  glucoseStatus,
+  glucoseSeverity,
+  timeSeverity,
+  glucoseDiscrepancy,
+  trendSeverity
+};

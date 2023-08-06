@@ -2,8 +2,13 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Dashboard from '../../pages/Dashboard';
 import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
 
 import '@testing-library/jest-dom/extend-expect';
+
+const mockStore = configureMockStore();
+const store = mockStore({ user_id: 'mock-user-id' });
 
 jest.mock('../../components/BloodGlucoseGraph', () => {
   return ({ onUpdateLastData }) => {
@@ -17,16 +22,12 @@ jest.mock('../../components/css/CurrentBG.css', () => ({}));
 jest.mock('../../components/Settings', () => () => <div data-testid="mock-settings" />);
 jest.mock('../../components/CurrentBG', () => () => <div data-testid="mock-current-bg" />);
 
-
-/* 
-* Test Name: Dashboard Page Render
-* Unit Test ID: UT20
-* Description: Tests rendering of Dashboard.js
-*/
 test('Dashboard Renders', () => {
   render(
     <MemoryRouter>
-      <Dashboard />
+      <Provider store={store}>
+        <Dashboard />
+      </Provider>
     </MemoryRouter>
   );
 
@@ -37,15 +38,12 @@ test('Dashboard Renders', () => {
   expect(setupHueButton).toBeInTheDocument();
 });
 
-/* 
-* Test Name: Blood Glucose Graph Render
-* Unit Test ID: UT21
-* Description: Tests rendering of BloodGlucoseGraph.js
-*/
 test('Blood Glucose Graph Renders', () => {
   render(
     <MemoryRouter>
-      <Dashboard />
+      <Provider store={store}>
+        <Dashboard />
+      </Provider>
     </MemoryRouter>
   );
 
@@ -53,15 +51,12 @@ test('Blood Glucose Graph Renders', () => {
   expect(bloodGlucoseGraph).toBeInTheDocument();
 });
 
-/* 
-* Test Name: Sidebar Open on Settings Icon Click
-* Unit Test ID: UT22
-* Description: Tests if the sidebar opens when the settings icon is clicked
-*/
 test('Sidebar Open on Settings Icon Click', () => {
   render(
     <MemoryRouter>
-      <Dashboard />
+      <Provider store={store}>
+        <Dashboard />
+      </Provider>
     </MemoryRouter>
   );
 
@@ -72,11 +67,6 @@ test('Sidebar Open on Settings Icon Click', () => {
   expect(settingsSidebar).toBeInTheDocument();
 });
 
-/* 
-* Test Name: handleUpdateLastData Test
-* Unit Test ID: UT23
-* Description: Tests if handleUpdateLastData is called when BloodGlucoseGraph calls onUpdateLastData
-*/
 let mockSetLastLevel = jest.fn();
 let mockSetLastTrend = jest.fn();
 
@@ -92,10 +82,12 @@ jest.mock('react', () => ({
 test('handleUpdateLastData is called with correct arguments', () => {
   render(
     <MemoryRouter>
-      <Dashboard />
+      <Provider store={store}>
+        <Dashboard />
+      </Provider>
     </MemoryRouter>
   );
-  
+
   expect(mockSetLastLevel).toHaveBeenCalled();
   expect(mockSetLastTrend).toHaveBeenCalled();
 });
