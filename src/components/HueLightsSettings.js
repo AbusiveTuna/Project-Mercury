@@ -3,7 +3,7 @@ import { BsX } from 'react-icons/bs';
 import './css/HueLightsSettings.css';
 import { useSelector } from 'react-redux';
 
-function HueLightsSettings({ isSidebarOpen, setSidebarOpen, checkedDevices, setCheckedDevices }) {
+function HueLightsSettings({ isHueSidebarOpen, setHueSidebarOpen, checkedDevices, setCheckedDevices }) {
   const [devices, setDevices] = useState([]);
   const [alerts, setAlerts] = useState([]);
   const [deviceOn, setDeviceOn] = useState([]);
@@ -12,8 +12,10 @@ function HueLightsSettings({ isSidebarOpen, setSidebarOpen, checkedDevices, setC
   useEffect(() => {
     const fetchHueDevices = async () => {
       try {
-        await fetch('https://protected-badlands-72029.herokuapp.com/updateHueDevices');
-        const response = await fetch('https://protected-badlands-72029.herokuapp.com/getHueDevices');
+        await fetch('https://protected-badlands-72029.herokuapp.com/updateHueDevices/' + userId, {
+          method: 'POST',
+        });
+        const response = await fetch('https://protected-badlands-72029.herokuapp.com/getHueDevices/' + userId);
         if (response.status === 200) {
           const data = await response.json();
           setDevices(data);
@@ -60,12 +62,8 @@ function HueLightsSettings({ isSidebarOpen, setSidebarOpen, checkedDevices, setC
   };
 
   return (
-    <div className={isSidebarOpen ? 'sidebar open' : 'sidebar'} data-testid='sidebar'>
-      <BsX
-        className='settings-button close-button'
-        onClick={() => setSidebarOpen(false)}
-        data-testid='close-button'
-      />
+    <div className={isHueSidebarOpen ? "hue-sidebar open" : "hue-sidebar"} data-testid="sidebar">
+      <BsX className="hue-settings-button hue-close-button" onClick={() => setHueSidebarOpen(false)} data-testid="close-button" />
       <div className='sidebar-content'>
         <h2>Use For Alerts?</h2>
         <ul>

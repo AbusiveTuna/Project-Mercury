@@ -9,7 +9,8 @@ import WarningThresholds from '../components/WarningThresholds';
 import HueLightsSettings from '../components/HueLightsSettings';
 import Alerts from '../components/Alerts';
 import Clock from '../components/Clock';
-import { SmartAlert, smartAlert } from '../utils/SmartAlert';
+import { SmartAlert } from '../utils/SmartAlert';
+import { useSelector } from 'react-redux';
 
 function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -22,6 +23,8 @@ function Dashboard() {
   const [highThreshold, setHighThreshold] = useState(300);
   const [checkedDevices, setCheckedDevices] = useState([]);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const userId = useSelector(state => state.user_id);
+
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -35,7 +38,8 @@ function Dashboard() {
   useEffect(() => {
     const fetchHueDevices = async () => {
       try {
-        const response = await fetch('https://protected-badlands-72029.herokuapp.com/getHueDevices');
+        const response = await fetch('https://protected-badlands-72029.herokuapp.com/getHueDevices/' + userId);
+
         if (response.status === 200) {
           setHasHueData(true);
         }
@@ -83,12 +87,14 @@ function Dashboard() {
           </>
         )}
         <Settings isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <HueLightsSettings
-          isSidebarOpen={isHueSidebarOpen}
-          setSidebarOpen={setHueSidebarOpen}
-          checkedDevices={checkedDevices}
-          setCheckedDevices={setCheckedDevices}
-        />
+        {hasHueData && (
+          <HueLightsSettings
+            isSidebarOpen={isHueSidebarOpen}
+            setSidebarOpen={setHueSidebarOpen}
+            checkedDevices={checkedDevices}
+            setCheckedDevices={setCheckedDevices}
+          />
+        )}
         <div className='graph-container'>
           {hasDataLoaded && <CurrentBG level={lastLevel} trend={lastTrend} />}
           <BloodGlucoseGraph onUpdateLastData={handleUpdateLastData} />

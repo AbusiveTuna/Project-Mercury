@@ -1,4 +1,4 @@
-.sidebar {
+.hue-sidebar {
   position: fixed;
   top: 0;
   right: 0;
@@ -10,15 +10,15 @@
   transform: translateX(100%);
 }
 
-.sidebar-content {
+.hue-sidebar-content {
   padding: 20px;
 }
 
-.sidebar.open {
+.hue-sidebar.open {
   transform: translateX(0);
 }
 
-.close-button {
+.hue-close-button {
   position: absolute;
   right: 10px;
   top: 10px;

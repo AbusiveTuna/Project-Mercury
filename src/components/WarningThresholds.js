@@ -10,8 +10,8 @@ const WarningThresholds = ({ lowThreshold, setLowThreshold, highThreshold, setHi
       try {
         const res = await fetch(`https://protected-badlands-72029.herokuapp.com/getUserSettings/${userId}`);
         const data = await res.json();
-        setHighThreshold(data.high_threshold);
-        setLowThreshold(data.low_threshold);
+        setHighThreshold(data.high_threshold || 300); // Default value if undefined
+        setLowThreshold(data.low_threshold || 60); // Default value if undefined
       } catch (err) {
         console.error(err);
       }

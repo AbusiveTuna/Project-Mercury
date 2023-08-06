@@ -31,7 +31,7 @@ function HueLightsLink() {
   };
 
   return (
-    <div>
+    <div className="hue-lights-container">
       <h1>Phillips Hue Bridge IP Address</h1>
       <ol>
         <li>

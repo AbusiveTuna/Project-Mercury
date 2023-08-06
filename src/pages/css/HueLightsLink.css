@@ -1,0 +1,48 @@
+.hue-lights-container {
+    background-color: #282c34;
+    color: #f0f0f0;
+    font-size: 18px;
+    line-height: 1.5;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  
+  .hue-lights-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .hue-lights-container ol,
+  .hue-lights-container ul {
+    margin-bottom: 20px;
+  }
+  
+  .hue-lights-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .hue-lights-container input {
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .hue-lights-container button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .hue-lights-container button:hover {
+    background-color: #0056b3;
+  }
+  
