@@ -9,7 +9,7 @@ import WarningThresholds from '../components/WarningThresholds';
 import HueLightsSettings from '../components/HueLightsSettings';
 import Alerts from '../components/Alerts';
 import Clock from '../components/Clock';
-import { smartAlert } from '../utils/SmartAlert';
+import { SmartAlert, smartAlert } from '../utils/SmartAlert';
 
 function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -47,7 +47,7 @@ function Dashboard() {
   }, []);
 
   useEffect(() => {
-    smartAlert(lastLevel, lastTrend, lowThreshold, highThreshold, checkedDevices, currentTime);
+    SmartAlert(lastLevel, lastTrend, lowThreshold, highThreshold, checkedDevices, currentTime);
   }, [lastLevel, lastTrend, lowThreshold, highThreshold, checkedDevices, currentTime]);
 
   const handleDexcomLink = () => {

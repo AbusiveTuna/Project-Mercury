@@ -1,7 +1,7 @@
-function glucoseStatus(lastLevel, lowThreshold, highThreshold) {
-  if (lastLevel <= lowThreshold) {
+function glucoseStatus(bloodSugar, lowThreshold, highThreshold) {
+  if (bloodSugar <= lowThreshold) {
     return 'low';
-  } else if (lastLevel => highThreshold) {
+  } else if (bloodSugar => highThreshold) {
     return 'high';
   } else {
     return 'normal';
@@ -27,18 +27,18 @@ function timeSeverity(currentTime) {
     return hours >= 22 || hours < 6 ? 1 : 0;
 }
 
-function glucoseDiscrepancy(bloodSugar,status){
+function glucoseDiscrepancy(bloodSugar,status,low,high){
     if (status === 'low') {
-      return lowThreshold - lastLevel;
+      return low - bloodSugar;
     } else if (status === 'high') {
-      return lastLevel - highThreshold;
+      return bloodSugar - high;
     } else {
       return -1;
     }
 }
 
 function trendSeverity(trend,status){
-  if(trend == 'flat'){
+  if(trend === 'flat'){
     return 0;
   }
   
@@ -47,26 +47,19 @@ function trendSeverity(trend,status){
     //User is trending in the wrong direction.
       case 'fortyFiveDown':
         return 1;
-        break;
       case 'singleDown':
         return 2;
-        break;
       case 'doubleDown':
         return 3;
-        break;
       //User is trending in the right direction
       case 'fortyFiveUp':
         return 0;
-        break;
       case 'singleUp':
         return -1;
-        break;
       case 'doubleUp':
         return -2;
-        break;
       default:
         return 0;
-        break;
     }
   }
     
@@ -75,26 +68,19 @@ function trendSeverity(trend,status){
     //User is trending in the right direction.
       case 'fortyFiveDown':
         return 0;
-        break;
       case 'singleDown':
         return -1;
-        break;
       case 'doubleDown':
         return -2;
-        break;
       //User is trending in the wrong direction
       case 'fortyFiveUp':
         return 1;
-        break;
       case 'singleUp':
         return 2;
-        break;
       case 'doubleUp':
         return 3;
-        break;
       default:
         return 0;
-        break;
     }
   }
     
@@ -106,13 +92,15 @@ function trendSeverity(trend,status){
 export const SmartAlert = (lastLevel, lastTrend, lowThreshold, highThreshold, checkedDevices, currentTime) => {
 
     let status = glucoseStatus(lastLevel, lowThreshold, highThreshold);
-    let glucoseLevel = glucoseDiscrepancy(lastLevel,status);
+    let glucoseLevel = glucoseDiscrepancy(lastLevel,status,lowThreshold,highThreshold);
   
     let timeFactor = timeSeverity(currentTime);
     let glucoseFactor = glucoseSeverity(glucoseLevel);
     let trendFactor = trendSeverity(lastTrend,status);
 
     let totalFactor = timeFactor + glucoseFactor + trendFactor;
+
+    return totalFactor;
 };
 
 
