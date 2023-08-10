@@ -89,7 +89,7 @@ test('Successful Login', () => {
 test('Invalid Login', async () => {
   act(() => {
     render(
-      <Provider store={store}> {}
+      <Provider store={store}> { }
         <MemoryRouter>
           <LoginPage />
         </MemoryRouter>

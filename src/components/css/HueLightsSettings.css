@@ -77,15 +77,14 @@
   transition: 0.4s;
 }
 
-.hue-sidebar-content input:checked + .slider {
+.hue-sidebar-content input:checked+.slider {
   background-color: #2196F3;
 }
 
-.hue-sidebar-content input:checked + .slider:before {
+.hue-sidebar-content input:checked+.slider:before {
   transform: translateX(26px);
 }
 
-/* Rounded sliders */
 .hue-sidebar-content .slider.round {
   border-radius: 34px;
 }

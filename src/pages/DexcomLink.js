@@ -33,7 +33,7 @@ function DexcomLink() {
       <p>Click the button below to login to your Dexcom Account. On Successful Login you will be redirected to the Dashboard</p>
       <button onClick={handleLinkDexcom}>Link Dexcom</button>
     </div>
-);
+  );
 }
 
 export default DexcomLink;

@@ -52,7 +52,7 @@ function ResetPassword() {
         <h1>Reset your password</h1>
         <p>Enter your new password below</p>
         <div>
-          <input 
+          <input
             type="password"
             placeholder="Enter New Password"
             value={newPassword}

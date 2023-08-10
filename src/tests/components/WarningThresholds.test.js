@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, act,waitFor,fireEvent } from '@testing-library/react';
+import { render, screen, act, waitFor, fireEvent } from '@testing-library/react';
 import WarningThresholds from '../../components/WarningThresholds';
 import { useSelector } from 'react-redux';
 import '@testing-library/jest-dom/extend-expect';

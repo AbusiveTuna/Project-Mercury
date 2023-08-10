@@ -1,3 +1,6 @@
+/*
+* Displays the current time
+*/
 import React, { useState, useEffect } from 'react';
 
 function Clock() {

@@ -15,7 +15,8 @@
   justify-content: center;
 }
 
-.LoginPage input, .LoginPage .button-container {
+.LoginPage input,
+.LoginPage .button-container {
   margin-bottom: 20px;
   width: 300px;
 }
@@ -53,7 +54,8 @@
   width: 30%;
 }
 
-.LoginPage input, .LoginPage button {
+.LoginPage input,
+.LoginPage button {
   font-size: 1em;
 }
 
@@ -87,14 +89,16 @@
   display: flex;
 }
 
-.forgot-password, .register {
+.forgot-password,
+.register {
   color: #fff;
   text-decoration: underline;
   cursor: pointer;
   margin-right: 10px;
 }
 
-.forgot-password:hover, .register:hover {
+.forgot-password:hover,
+.register:hover {
   color: #61dafb;
 }
 
@@ -116,6 +120,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

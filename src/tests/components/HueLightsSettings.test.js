@@ -12,7 +12,7 @@ describe('HueLightsSettings', () => {
   it('should render Hue sidebar when isHueSidebarOpen is true', () => {
     render(
       <Provider store={store}>
-        <HueLightsSettings isHueSidebarOpen={true} setHueSidebarOpen={() => {}} checkedDevices={[]} setCheckedDevices={() => {}} />
+        <HueLightsSettings isHueSidebarOpen={true} setHueSidebarOpen={() => { }} checkedDevices={[]} setCheckedDevices={() => { }} />
       </Provider>
     );
     const sidebar = screen.getByTestId('sidebar');
@@ -22,7 +22,7 @@ describe('HueLightsSettings', () => {
   it('should not render Hue sidebar when isHueSidebarOpen is false', () => {
     render(
       <Provider store={store}>
-        <HueLightsSettings isHueSidebarOpen={false} setHueSidebarOpen={() => {}} checkedDevices={[]} setCheckedDevices={() => {}} />
+        <HueLightsSettings isHueSidebarOpen={false} setHueSidebarOpen={() => { }} checkedDevices={[]} setCheckedDevices={() => { }} />
       </Provider>
     );
     const sidebar = screen.getByTestId('sidebar');
@@ -33,7 +33,7 @@ describe('HueLightsSettings', () => {
     const setHueSidebarOpenMock = jest.fn();
     render(
       <Provider store={store}>
-        <HueLightsSettings isHueSidebarOpen={true} setHueSidebarOpen={setHueSidebarOpenMock} checkedDevices={[]} setCheckedDevices={() => {}} />
+        <HueLightsSettings isHueSidebarOpen={true} setHueSidebarOpen={setHueSidebarOpenMock} checkedDevices={[]} setCheckedDevices={() => { }} />
       </Provider>
     );
     const closeButton = screen.getByTestId('close-button');
@@ -55,7 +55,7 @@ describe('HueLightsSettings', () => {
 
     render(
       <Provider store={store}>
-        <HueLightsSettings isHueSidebarOpen={true} setHueSidebarOpen={() => {}} checkedDevices={[]} setCheckedDevices={() => {}} />
+        <HueLightsSettings isHueSidebarOpen={true} setHueSidebarOpen={() => { }} checkedDevices={[]} setCheckedDevices={() => { }} />
       </Provider>
     );
 
@@ -76,18 +76,18 @@ describe('HueLightsSettings', () => {
         }),
       })
     );
-  
+
     render(
       <Provider store={store}>
-        <HueLightsSettings isHueSidebarOpen={true} setHueSidebarOpen={() => {}} checkedDevices={[]} setCheckedDevices={() => {}} />
+        <HueLightsSettings isHueSidebarOpen={true} setHueSidebarOpen={() => { }} checkedDevices={[]} setCheckedDevices={() => { }} />
       </Provider>
     );
-  
+
     // Wait for the fetch to complete
     await screen.findByText('Light 1');
-    const lightSwitches = screen.getAllByRole('checkbox', { name: '' }); 
-    fireEvent.click(lightSwitches[1]); 
-  
+    const lightSwitches = screen.getAllByRole('checkbox', { name: '' });
+    fireEvent.click(lightSwitches[1]);
+
 
   });
 

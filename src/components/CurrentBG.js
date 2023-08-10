@@ -1,3 +1,7 @@
+/*
+* Displays the user's current blood glucose level and trend
+*/
+
 import React from 'react';
 import './css/CurrentBG.css';
 import downTrend from '../resources/downTrend.png';
@@ -7,19 +11,19 @@ const CurrentBG = ({ level, trend }) => {
   let levelStyle = {};
   if (trend === 'singleDown' || trend === 'doubleDown') {
     rotation = 0;
-    levelStyle = {top: '10px'};
+    levelStyle = { top: '10px' };
   } else if (trend === 'singleUp' || trend === 'doubleUp') {
     rotation = 180;
-    levelStyle = {bottom: '10px'};
+    levelStyle = { bottom: '10px' };
   } else if (trend === 'fortyFiveUp') {
     rotation = 245;
-    levelStyle = {left: '208px'};
+    levelStyle = { left: '208px' };
   } else if (trend === 'fortyFiveDown') {
     rotation = 300;
-    levelStyle = {left: '205px', top: '20px'};
+    levelStyle = { left: '205px', top: '20px' };
   } else if (trend === 'flat') {
     rotation = 270;
-    levelStyle = {left: '205px'};
+    levelStyle = { left: '205px' };
   }
 
   return (

@@ -26,7 +26,7 @@ describe('BloodGlucoseGraph', () => {
         ],
       }),
     };
-    
+
     global.fetch = jest.fn().mockResolvedValue(responseData);
 
     const { container } = render(

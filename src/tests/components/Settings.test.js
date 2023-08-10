@@ -14,7 +14,7 @@ describe('Settings', () => {
   * Description: Tests sidebar logic when open
   */
   it('should render sidebar when isSidebarOpen is true', () => {
-    render(<Settings isSidebarOpen={true} setSidebarOpen={() => {}} />);
+    render(<Settings isSidebarOpen={true} setSidebarOpen={() => { }} />);
     const sidebar = screen.getByTestId('sidebar');
     expect(sidebar).toHaveClass('open');
   });
@@ -26,7 +26,7 @@ describe('Settings', () => {
   */
 
   it('should not render sidebar when isSidebarOpen is false', () => {
-    render(<Settings isSidebarOpen={false} setSidebarOpen={() => {}} />);
+    render(<Settings isSidebarOpen={false} setSidebarOpen={() => { }} />);
     const sidebar = screen.getByTestId('sidebar');
     expect(sidebar).not.toHaveClass('open');
   });

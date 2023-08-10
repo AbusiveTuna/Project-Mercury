@@ -8,12 +8,12 @@ jest.mock('../../pages/css/VerifyCode.css', () => ({}));
 
 beforeEach(() => {
   Object.defineProperty(window, 'localStorage', {
-      value: {
-          getItem: jest.fn(() => 'test@test.com'),
-          setItem: jest.fn(() => null),
-          removeItem: jest.fn(() => null),
-      },
-      writable: true
+    value: {
+      getItem: jest.fn(() => 'test@test.com'),
+      setItem: jest.fn(() => null),
+      removeItem: jest.fn(() => null),
+    },
+    writable: true
   });
 });
 
@@ -30,13 +30,13 @@ afterEach(() => {
 * Description: Tests rendering of VerifyCode.js
 */
 test('Verify Code Page Render', () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <VerifyCode />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <MemoryRouter>
+        <VerifyCode />
+      </MemoryRouter>
+    );
+  });
 
   const codeInput = screen.getByPlaceholderText('Enter Code');
   const verifyButton = screen.getByText('Verify Code');
@@ -51,13 +51,13 @@ test('Verify Code Page Render', () => {
 * Description: Tests code verification  logic
 */
 test('Successful Code Verification', () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <VerifyCode />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <MemoryRouter>
+        <VerifyCode />
+      </MemoryRouter>
+    );
+  });
 
   const codeInput = screen.getByPlaceholderText('Enter Code');
   const verifyButton = screen.getByText('Verify Code');
@@ -91,13 +91,13 @@ test('Successful Code Verification', () => {
 * Description: Tests when an invalid code has been entered. 
 */
 test('Failed Code Verification', async () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <VerifyCode />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <MemoryRouter>
+        <VerifyCode />
+      </MemoryRouter>
+    );
+  });
 
   const codeInput = screen.getByPlaceholderText('Enter Code');
   const verifyButton = screen.getByText('Verify Code');

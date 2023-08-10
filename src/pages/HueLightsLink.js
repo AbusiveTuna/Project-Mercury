@@ -43,7 +43,7 @@ function HueLightsLink() {
           alert('Authenticated successfully');
           navigate("/dashboard");
         } catch (err) {
-          console.error(err); 
+          console.error(err);
         }
 
       }
@@ -51,7 +51,7 @@ function HueLightsLink() {
       console.error(err);
     }
   };
-  
+
 
   return (
     <div className="hue-lights-container">

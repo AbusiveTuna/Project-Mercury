@@ -16,13 +16,13 @@ afterEach(() => {
 * Description: Tests rendering of ForgotPassword.js
 */
 test('Forgot Password Page Render', () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <ForgotPassword />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <MemoryRouter>
+        <ForgotPassword />
+      </MemoryRouter>
+    );
+  });
   const emailInput = screen.getByPlaceholderText('Enter Email');
   const resetPasswordButton = screen.getByText('Reset Password');
 
@@ -37,13 +37,13 @@ test('Forgot Password Page Render', () => {
 * Description: Tests a valid password request has been sent to the server.
 */
 test('Successful Password Reset Request', () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <ForgotPassword />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <MemoryRouter>
+        <ForgotPassword />
+      </MemoryRouter>
+    );
+  });
   const emailInput = screen.getByPlaceholderText('Enter Email');
   const resetPasswordButton = screen.getByText('Reset Password');
 
@@ -76,13 +76,13 @@ test('Successful Password Reset Request', () => {
 * Description: Tests an invalid password request has been sent to the server.
 */
 test('Failed Password Reset Request', async () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <ForgotPassword />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <MemoryRouter>
+        <ForgotPassword />
+      </MemoryRouter>
+    );
+  });
   const emailInput = screen.getByPlaceholderText('Enter Email');
   const resetPasswordButton = screen.getByText('Reset Password');
 

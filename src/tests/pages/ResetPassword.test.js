@@ -8,12 +8,12 @@ jest.mock('../../pages/css/ResetPassword.css', () => ({}));
 
 beforeEach(() => {
   Object.defineProperty(window, 'localStorage', {
-      value: {
-          getItem: jest.fn(() => 'test@test.com'),
-          setItem: jest.fn(() => null),
-          removeItem: jest.fn(() => null),
-      },
-      writable: true
+    value: {
+      getItem: jest.fn(() => 'test@test.com'),
+      setItem: jest.fn(() => null),
+      removeItem: jest.fn(() => null),
+    },
+    writable: true
   });
 });
 
@@ -31,13 +31,13 @@ afterEach(() => {
 * Description: Tests rendering of ResetPassword.js
 */
 test('Reset Password Page Render', () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <ResetPassword />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <MemoryRouter>
+        <ResetPassword />
+      </MemoryRouter>
+    );
+  });
   const passwordInput = screen.getByPlaceholderText('Enter New Password');
   const resetPasswordButton = screen.getByText('Reset Password');
 
@@ -51,14 +51,14 @@ test('Reset Password Page Render', () => {
 * Description: Tests when a valid password reset has occured
 */
 test('Successful Password Reset', () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <ResetPassword />
-          </MemoryRouter>
-        );
-      });
-      
+  act(() => {
+    render(
+      <MemoryRouter>
+        <ResetPassword />
+      </MemoryRouter>
+    );
+  });
+
   const passwordInput = screen.getByPlaceholderText('Enter New Password');
   const resetPasswordButton = screen.getByText('Reset Password');
 
@@ -92,13 +92,13 @@ test('Successful Password Reset', () => {
 * Description: Tests when a password reset was unsuccessful
 */
 test('Failed Password Reset', async () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <ResetPassword />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <MemoryRouter>
+        <ResetPassword />
+      </MemoryRouter>
+    );
+  });
   const passwordInput = screen.getByPlaceholderText('Enter New Password');
   const resetPasswordButton = screen.getByText('Reset Password');
 

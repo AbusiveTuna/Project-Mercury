@@ -1,3 +1,6 @@
+/*
+* Handles navigating user to dexcom site for setup
+*/
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
@@ -6,13 +9,13 @@ function DexcomRedirect() {
   const user_id = Cookies.get('user_id');
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     const state = urlParams.get('state');
     const expectedState = Cookies.get('dexcomState');
-    
+
     if (state !== expectedState) {
       setError('State mismatch error');
       return;
@@ -41,7 +44,7 @@ function DexcomRedirect() {
     } else {
       setError('No auth code found');
     }
-  }, [user_id,navigate,setError]);
+  }, [user_id, navigate, setError]);
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback  } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/LoginPage.css';
 import Spinner from 'react-bootstrap/Spinner';
@@ -21,22 +21,22 @@ function LoginPage() {
       },
       body: JSON.stringify({ username, password })
     })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Invalid username or password');
-      }
-    })
-    .then(data => {
-      setIsLoading(false);
-      dispatch({ type: 'SET_USER_ID', payload: data.user_id });
-      navigate("/dashboard");
-    })
-    .catch(error => {
-      setIsLoading(false);
-      setErrorMessage('Invalid username or password');
-    });
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Invalid username or password');
+        }
+      })
+      .then(data => {
+        setIsLoading(false);
+        dispatch({ type: 'SET_USER_ID', payload: data.user_id });
+        navigate("/dashboard");
+      })
+      .catch(error => {
+        setIsLoading(false);
+        setErrorMessage('Invalid username or password');
+      });
   }, [username, password, navigate, dispatch]);
 
   const handleForgotPassword = () => {
@@ -46,31 +46,31 @@ function LoginPage() {
   const handleRegister = () => {
     navigate("/register");
   }
-  
+
   const handleKeyPress = useCallback((event) => {
     if (event.key === 'Enter' && username && password) {
       handleLogin();
     }
   }, [username, password, handleLogin]);
-  
+
   useEffect(() => {
     window.addEventListener('keypress', handleKeyPress);
     return () => {
       window.removeEventListener('keypress', handleKeyPress);
     }
   }, [username, password, handleKeyPress]);
-  
- return (
+
+  return (
     <div className="LoginPage">
-      <div className="about-section">Project Mercury<br/>
-       Realtime blood glucose monitoring and warning system for smarthome devices.</div>
+      <div className="about-section">Project Mercury<br />
+        Realtime blood glucose monitoring and warning system for smarthome devices.</div>
       <div className="LoginPage-content">
         {isLoading ? (
           <Spinner />
         ) : (
           <>
             <div>
-              <input 
+              <input
                 type="text"
                 placeholder="Username"
                 value={username}
@@ -78,7 +78,7 @@ function LoginPage() {
               />
             </div>
             <div>
-              <input 
+              <input
                 type="password"
                 placeholder="Password"
                 value={password}

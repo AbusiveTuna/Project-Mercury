@@ -1,3 +1,6 @@
+/*
+* Settings Component for dexcom
+*/
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
