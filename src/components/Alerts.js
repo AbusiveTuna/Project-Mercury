@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-function getTimeouts(smartAlertValue) {
+export function getTimeouts(smartAlertValue) {
   if(smartAlertValue > 5){
     smartAlertValue = 5;
   }
