@@ -63,13 +63,17 @@ describe('HueLightsLink', () => {
     expect(ipAddressInput.value).toBe('192.168.0.1');
   });
 
-    /* 
-    * Test Name: Test HueLightsLink Form
-    * Unit Test ID: UT26
-    * Description: Tests HueLightsLink form submission
-    */
-  it('should handle form submission correctly', () => {
-    const mockPreventDefault = jest.fn();
+  /* 
+  * Test Name: Test Successful HueLightsLink Form Submission
+  * Unit Test ID: UT26
+  * Description: Tests successful HueLightsLink form submission
+  */
+  it('should handle successful form submission', async () => {
+    global.fetch = jest.fn().mockResolvedValueOnce({
+      json: () => Promise.resolve([{ success: { username: 'username', clientkey: 'clientkey' } }]),
+    }).mockResolvedValueOnce({
+      json: () => Promise.resolve({ message: 'Authenticated successfully' }),
+    });
 
     const { getByText, getByLabelText } = render(
       <Provider store={store}>
