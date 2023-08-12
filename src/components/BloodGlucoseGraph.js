@@ -1,3 +1,7 @@
+/*
+* Blood Glucose Graph creates the dashboard's
+* Graph when given real time user data from dexcom
+*/
 import React, { useEffect, useState } from 'react';
 import 'chart.js/auto';
 import { Line } from 'react-chartjs-2';

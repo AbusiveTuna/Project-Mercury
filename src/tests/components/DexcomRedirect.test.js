@@ -38,5 +38,5 @@ describe('DexcomRedirect', () => {
     );
     expect(screen.getByText('State mismatch error')).toBeInTheDocument();
   });
-  
+
 });

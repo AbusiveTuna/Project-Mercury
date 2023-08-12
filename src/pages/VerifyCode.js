@@ -7,7 +7,7 @@ function VerifyCode() {
   const [code, setCode] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  
+
   const handleVerifyCode = useCallback(async () => {
     try {
       const response = await fetch('https://protected-badlands-72029.herokuapp.com/verifyCode', {
@@ -52,7 +52,7 @@ function VerifyCode() {
         <h1>Verify your code</h1>
         <p>Enter the verification code that was sent to your email</p>
         <div>
-          <input 
+          <input
             type="text"
             placeholder="Enter Code"
             value={code}

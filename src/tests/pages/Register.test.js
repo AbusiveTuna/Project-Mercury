@@ -26,13 +26,13 @@ afterEach(() => {
 * Description: Tests rendering of the Register.js page
 */
 test('Register Page Render', () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <Register />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    );
+  });
   const usernameInput = screen.getByPlaceholderText('Enter Username');
   const emailInput = screen.getByPlaceholderText('Enter Email');
   const confirmEmailInput = screen.getByPlaceholderText('Confirm Email');
@@ -56,13 +56,13 @@ test('Register Page Render', () => {
 * Description: Tests that mismatching emails prevent submission of form
 */
 test('Email Mismatch', () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <Register />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    );
+  });
   const emailInput = screen.getByPlaceholderText('Enter Email');
   const confirmEmailInput = screen.getByPlaceholderText('Confirm Email');
 
@@ -79,13 +79,13 @@ test('Email Mismatch', () => {
 * Description: Tests that mismatching passwords prevent submission of form
 */
 test('Password Mismatch', () => {
-    act(() => {
-        render(
-          <MemoryRouter>
-            <Register />
-          </MemoryRouter>
-        );
-      });
+  act(() => {
+    render(
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    );
+  });
   const passwordInput = screen.getByPlaceholderText('Enter Password');
   const confirmPasswordInput = screen.getByPlaceholderText('Confirm Password');
 
@@ -133,13 +133,13 @@ test('Submit Form', async () => {
 
     await new Promise((r) => setTimeout(r, 100));
   });
-  
+
   fireEvent.click(signUpButton);
 
   await waitFor(() => {
     expect(fetch).toHaveBeenCalledTimes(1);
   }, { timeout: 4000 });
-  
+
 
   expect(fetch).toHaveBeenCalledWith('https://protected-badlands-72029.herokuapp.com/addUser', {
     method: 'POST',
@@ -218,7 +218,7 @@ test('Check Username Availability', async () => {
   });
 
   const usernameInput = screen.getByPlaceholderText('Enter Username');
-  
+
   await act(async () => {
     fireEvent.change(usernameInput, { target: { value: 'usernameAval' } });
     await new Promise((r) => setTimeout(r, 100));

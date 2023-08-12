@@ -1,3 +1,6 @@
+/*
+* Base of General Settings menu
+*/
 import React from 'react';
 import { BsX } from 'react-icons/bs';
 import './css/Settings.css';
@@ -10,8 +13,6 @@ function Settings({ isSidebarOpen, setSidebarOpen }) {
       <div className="sidebar-content">
         <ul>
           <li><DexcomSensorInfo /></li>
-          <li>TODO 2</li>
-          <li>TODO 3</li>
         </ul>
       </div>
     </div>

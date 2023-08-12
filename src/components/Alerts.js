@@ -1,3 +1,6 @@
+/*
+* Alerts component handles triggering of user's Hue Lights based on blood glucose levels
+*/
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -5,7 +8,7 @@ export function getTimeouts(smartAlertValue) {
   if(smartAlertValue > 5){
     smartAlertValue = 5;
   }
-  if(smartAlertValue < 1){
+  if (smartAlertValue < 1) {
     smartAlertValue = 1;
   }
   smartAlertValue = 5;
@@ -25,7 +28,7 @@ export function getTimeouts(smartAlertValue) {
   }
 }
 
-function Alerts({ level, trend, lowThreshold, highThreshold, checkedDevices, smartAlertValue  }) {
+function Alerts({ level, trend, lowThreshold, highThreshold, checkedDevices, smartAlertValue }) {
   const [alert, setAlert] = useState(false);
   const [acknowledged, setAcknowledged] = useState(false);
   const userId = useSelector((state) => state.user_id);
@@ -106,7 +109,7 @@ function Alerts({ level, trend, lowThreshold, highThreshold, checkedDevices, sma
       setAcknowledged(false);
     }, 600000);
   };
-  
+
 
   return (
     <div>

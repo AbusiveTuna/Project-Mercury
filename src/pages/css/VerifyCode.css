@@ -36,9 +36,9 @@
 }
 
 .VerifyCode-content .button-container {
-    width: 80%; 
-    display: flex;
-    justify-content: center;
+  width: 80%;
+  display: flex;
+  justify-content: center;
 }
 
 .VerifyCode-content .button-container button {
@@ -57,9 +57,9 @@
 }
 
 .VerifyCode-content .button-container button:hover {
-    background-color: #00cc00;
+  background-color: #00cc00;
 }
 
 .VerifyCode-content .button-container button[disabled] {
-    background-color: #7f7f7f;
+  background-color: #7f7f7f;
 }

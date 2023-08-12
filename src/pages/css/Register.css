@@ -11,7 +11,7 @@
 }
 
 .Register-content h1,
-.Register-content p{
+.Register-content p {
   color: #ffffff;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .Register-content .button-container {
-  width: 80%; 
+  width: 80%;
   display: flex;
   justify-content: center;
 }
@@ -54,8 +54,3 @@
 input.mismatch {
   border: 2px solid red !important;
 }
-
-
-
-
-

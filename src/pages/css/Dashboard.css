@@ -29,7 +29,7 @@
 
 .clock {
   font-size: 3rem;
-  padding-top: 20px; 
+  padding-top: 20px;
   padding-left: 20px;
 }
 
@@ -67,9 +67,9 @@
   transform: translateX(-50%);
   display: flex;
   justify-content: space-around;
-  width: 60%; 
+  width: 60%;
 }
 
 .button-container {
-  margin: 0 20px; 
+  margin: 0 20px;
 }
